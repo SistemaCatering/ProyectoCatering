@@ -12,6 +12,7 @@ body{
     background:#333 url(../images/bg.jpg) repeat top left;
     font-family:Arial;
 }
+
 span.reference{
     position:fixed;
     left:10px;
