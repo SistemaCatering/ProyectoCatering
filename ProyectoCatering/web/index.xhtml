@@ -13,6 +13,13 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/cuerpo.js"></script>
+        <script>
+            function redireccionar() {
+                var pagina = "registro.xhtml";
+                location.href = pagina;
+            }
+            );
+        </script>
     </h:head>
     <h:body>
 
@@ -65,11 +72,11 @@
                     </a>
                 </li>
                 <li>
-                    <a href="registro.xhtml" onclick="#{usuarioBean.pagina()}">
-                        <img src="images/5.jpg" alt=""/>
+                    <a href="#" onclick="redireccionar(); return false;">
+                        <img src="images/5.jpg" alt="" onclick="redireccionar(); return false;"/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
-                            <span class="sdt_link">Regístrarse</span>
+                            <span class="sdt_link" onclick="redireccionar(); return false;">Regístrarse</span>
                             <span class="sdt_descr">Crea una cuenta</span>
                         </span>
                     </a>
