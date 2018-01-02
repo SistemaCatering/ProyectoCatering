@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="registro.xhtml">
+                    <a href="registro.xhtml" onclick="#{usuarioBean.pagina()}">
                         <img src="images/5.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
@@ -97,7 +97,8 @@
                 <a href="http://www.flickr.com/photos/arcticpuppy/sets/72157622090180990/">Images by tibchris</a>
             </span>
         </div>
-        
+        <th class="etiqueta"><h:outputText value="Celular"/></th>
+        <td><h:inputText id="celular" required="false" value="#{usuarioBean.usuario.celularUsu}"/>  </td>
 
     </h:body>
 </html>
