@@ -15,91 +15,94 @@
         <script type="text/javascript" src="js/cuerpo.js"></script>
     </h:head>
     <h:body>
+        <h:form>
+            <div class="content">
+                <h1 class="title">Organiz logo</h1>
+                <ul id="sdt_menu" class="sdt_menu">
+                    <li>
+                        <h:commandLink class="a"> <!-- href="quienessomos.xhtml"-->
+                            <img src="images/2.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Conócenos</span>
+                                <span class="sdt_descr">Acerca de nosotros</span>
+                            </span>
+                        </h:commandLink>
+                    </li>
+                    <li>
+                        <h:commandLink class="a" > <!--href="#"-->
+                            <img src="images/1.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Portafolio</span>
+                                <span class="sdt_descr">Nuestro Trabajo</span>
+                            </span>
+                        </h:commandLink>
+                        <div class="sdt_box">
+                            <h:commandLink class="a"> <!--href="servicios.xhtml"-->Servicios</h:commandLink>
+                            <h:commandLink class="a"><!-- href="#"-->Productos</h:commandLink>
+                            <h:commandLink class="a"><!-- href="#"-->Photography</h:commandLink>
+                        </div>
+                    </li>
+                    <li>
+                        <h:commandLink class="a"><!-- href="galeria.xhtml"-->
+                            <img src="images/3.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Galería</span>
+                                <span class="sdt_descr">Where ideas get born</span>
+                            </span>
+                        </h:commandLink>
+                    </li>
+                    <li>
+                        <h:commandLink  class="a"><!-- href="contacto.xhtml"-->
+                            <img src="images/4.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Contáctos</span>
+                                <span class="sdt_descr">Comunícate con nosotros</span>
+                            </span>
+                        </h:commandLink>
+                    </li>
+                    <li>
 
-        <div class="content">
-            <h1 class="title">Organiz logo</h1>
-            <ul id="sdt_menu" class="sdt_menu">
-                <li>
-                    <a href="quienessomos.xhtml">
-                        <img src="images/2.jpg" alt=""/>
-                        <span class="sdt_active"></span>
-                        <span class="sdt_wrap">
-                            <span class="sdt_link">Conócenos</span>
-                            <span class="sdt_descr">Acerca de nosotros</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="images/1.jpg" alt=""/>
-                        <span class="sdt_active"></span>
-                        <span class="sdt_wrap">
-                            <span class="sdt_link">Portafolio</span>
-                            <span class="sdt_descr">Nuestro Trabajo</span>
-                        </span>
-                    </a>
-                    <div class="sdt_box">
-                        <a href="servicios.xhtml">Servicios</a>
-                        <a href="#">Productos</a>
-                        <a href="#">Photography</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="galeria.xhtml">
-                        <img src="images/3.jpg" alt=""/>
-                        <span class="sdt_active"></span>
-                        <span class="sdt_wrap">
-                            <span class="sdt_link">Galería</span>
-                            <span class="sdt_descr">Where ideas get born</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="contacto.xhtml">
-                        <img src="images/4.jpg" alt=""/>
-                        <span class="sdt_active"></span>
-                        <span class="sdt_wrap">
-                            <span class="sdt_link">Contáctos</span>
-                            <span class="sdt_descr">Comunícate con nosotros</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="registro.xhtml" onclick="#{usuarioBean.pagina()}">
-                        <img src="images/5.jpg" alt=""/>
-                        <span class="sdt_active"></span>
-                        <span class="sdt_wrap">
-                            <span class="sdt_link">Regístrarse</span>
-                            <span class="sdt_descr">Crea una cuenta</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="ingreso.xhtml">
-                        <img src="images/6.jpg" alt=""/>
-                        <span class="sdt_active"></span>
-                        <span class="sdt_wrap">
-                            <span class="sdt_link">Ingresar</span>
-                            <span class="sdt_descr">Accede al sistema</span>
-                        </span>
-                    </a>
-                    <div class="sdt_box">
-                        <a href="#">Job Board Website</a>
-                        <a href="#">Shopping Cart</a>
-                        <a href="#">Interactive Maps</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                        <h:commandLink class="a" action="#{usuarioBean.pagina()}">
+                            <img src="images/5.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Regístrarse</span>
+                                <span class="sdt_descr">Crea una cuenta</span>
+                            </span>
+                        </h:commandLink>
+
+                    </li>
+                    <li>
+                        <h:commandLink class="a" ><!--href="ingreso.xhtml"-->
+                            <img src="images/6.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Ingresar</span>
+                                <span class="sdt_descr">Accede al sistema</span>
+                            </span>
+                        </h:commandLink>
+                        <div class="sdt_box">
+                            <h:commandLink class="a"> <!--href="#"-->Job Board Website</h:commandLink>
+                            <h:commandLink class="a"><!--href="#"-->Shopping Cart</h:commandLink>
+                            <h:commandLink class="a"> <!--href="#"-->Interactive Maps</h:commandLink>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </h:form>
         <div>
             <span class="reference">
                 <a href="http://tympanus.net/codrops/2010/07/16/slide-down-box-menu/">back to the Codrops Tutorial</a>
                 <a href="http://www.flickr.com/photos/arcticpuppy/sets/72157622090180990/">Images by tibchris</a>
             </span>
         </div>
-        <th class="etiqueta"><h:outputText value="Celular"/></th>
-        <td><h:inputText id="celular" required="false" value="#{usuarioBean.usuario.celularUsu}"/>  </td>
-
+        <h:form>
+            <h:commandButton id="uno" value="Registro" action="#{usuarioBean.pagina()}"/>
+        </h:form>
     </h:body>
 </html>
 
