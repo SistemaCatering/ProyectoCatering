@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturaCompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_codFactc}" for="codFactc" />
+                    <h:inputText id="codFactc" value="#{facturaCompraController.selected.codFactc}" title="#{bundle.EditFacturaCompraTitle_codFactc}" required="true" requiredMessage="#{bundle.EditFacturaCompraRequiredMessage_codFactc}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_numeroFactc}" for="numeroFactc" />
+                    <h:inputText id="numeroFactc" value="#{facturaCompraController.selected.numeroFactc}" title="#{bundle.EditFacturaCompraTitle_numeroFactc}" />
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_fechaFactc}" for="fechaFactc" />
+                    <h:inputText id="fechaFactc" value="#{facturaCompraController.selected.fechaFactc}" title="#{bundle.EditFacturaCompraTitle_fechaFactc}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_ivaFactc}" for="ivaFactc" />
+                    <h:inputText id="ivaFactc" value="#{facturaCompraController.selected.ivaFactc}" title="#{bundle.EditFacturaCompraTitle_ivaFactc}" />
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_descuentoFactc}" for="descuentoFactc" />
+                    <h:inputText id="descuentoFactc" value="#{facturaCompraController.selected.descuentoFactc}" title="#{bundle.EditFacturaCompraTitle_descuentoFactc}" />
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_subTotalFactc}" for="subTotalFactc" />
+                    <h:inputText id="subTotalFactc" value="#{facturaCompraController.selected.subTotalFactc}" title="#{bundle.EditFacturaCompraTitle_subTotalFactc}" />
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_totalFactc}" for="totalFactc" />
+                    <h:inputText id="totalFactc" value="#{facturaCompraController.selected.totalFactc}" title="#{bundle.EditFacturaCompraTitle_totalFactc}" />
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_codPa}" for="codPa" />
+                    <h:inputText id="codPa" value="#{facturaCompraController.selected.codPa}" title="#{bundle.EditFacturaCompraTitle_codPa}" required="true" requiredMessage="#{bundle.EditFacturaCompraRequiredMessage_codPa}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_codPerso}" for="codPerso" />
+                    <h:inputText id="codPerso" value="#{facturaCompraController.selected.codPerso}" title="#{bundle.EditFacturaCompraTitle_codPerso}" required="true" requiredMessage="#{bundle.EditFacturaCompraRequiredMessage_codPerso}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaCompraLabel_codProve}" for="codProve" />
+                    <h:inputText id="codProve" value="#{facturaCompraController.selected.codProve}" title="#{bundle.EditFacturaCompraTitle_codProve}" required="true" requiredMessage="#{bundle.EditFacturaCompraRequiredMessage_codProve}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{facturaCompraController.update}" value="#{bundle.EditFacturaCompraSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturaCompraViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturaCompraController.prepareList}" value="#{bundle.EditFacturaCompraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturaCompraIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

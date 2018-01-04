@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewParametrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewParametrosLabel_codPa}"/>
+                    <h:outputText value="#{parametrosController.selected.codPa}" title="#{bundle.ViewParametrosTitle_codPa}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_rucPa}"/>
+                    <h:outputText value="#{parametrosController.selected.rucPa}" title="#{bundle.ViewParametrosTitle_rucPa}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_nombreEmpresaPa}"/>
+                    <h:outputText value="#{parametrosController.selected.nombreEmpresaPa}" title="#{bundle.ViewParametrosTitle_nombreEmpresaPa}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_direccionPa}"/>
+                    <h:outputText value="#{parametrosController.selected.direccionPa}" title="#{bundle.ViewParametrosTitle_direccionPa}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_telefonoPa}"/>
+                    <h:outputText value="#{parametrosController.selected.telefonoPa}" title="#{bundle.ViewParametrosTitle_telefonoPa}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_webPa}"/>
+                    <h:outputText value="#{parametrosController.selected.webPa}" title="#{bundle.ViewParametrosTitle_webPa}"/>
+                    <h:outputText value="#{bundle.ViewParametrosLabel_pathLogoPa}"/>
+                    <h:outputText value="#{parametrosController.selected.pathLogoPa}" title="#{bundle.ViewParametrosTitle_pathLogoPa}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{parametrosController.destroyAndView}" value="#{bundle.ViewParametrosDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewParametrosEditLink}"/>
+                <br />
+                <h:commandLink action="#{parametrosController.prepareCreate}" value="#{bundle.ViewParametrosCreateLink}" />
+                <br />
+                <h:commandLink action="#{parametrosController.prepareList}" value="#{bundle.ViewParametrosShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewParametrosIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

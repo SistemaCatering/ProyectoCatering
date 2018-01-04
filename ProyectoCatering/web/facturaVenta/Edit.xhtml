@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFacturaVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_codFactv}" for="codFactv" />
+                    <h:inputText id="codFactv" value="#{facturaVentaController.selected.codFactv}" title="#{bundle.EditFacturaVentaTitle_codFactv}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_codFactv}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_numeroFactv}" for="numeroFactv" />
+                    <h:inputText id="numeroFactv" value="#{facturaVentaController.selected.numeroFactv}" title="#{bundle.EditFacturaVentaTitle_numeroFactv}" />
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_fechaFactv}" for="fechaFactv" />
+                    <h:inputText id="fechaFactv" value="#{facturaVentaController.selected.fechaFactv}" title="#{bundle.EditFacturaVentaTitle_fechaFactv}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_ivaFactv}" for="ivaFactv" />
+                    <h:inputText id="ivaFactv" value="#{facturaVentaController.selected.ivaFactv}" title="#{bundle.EditFacturaVentaTitle_ivaFactv}" />
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_descuentoFactv}" for="descuentoFactv" />
+                    <h:inputText id="descuentoFactv" value="#{facturaVentaController.selected.descuentoFactv}" title="#{bundle.EditFacturaVentaTitle_descuentoFactv}" />
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_subTotalFactv}" for="subTotalFactv" />
+                    <h:inputText id="subTotalFactv" value="#{facturaVentaController.selected.subTotalFactv}" title="#{bundle.EditFacturaVentaTitle_subTotalFactv}" />
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_totalFactv}" for="totalFactv" />
+                    <h:inputText id="totalFactv" value="#{facturaVentaController.selected.totalFactv}" title="#{bundle.EditFacturaVentaTitle_totalFactv}" />
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_codPa}" for="codPa" />
+                    <h:inputText id="codPa" value="#{facturaVentaController.selected.codPa}" title="#{bundle.EditFacturaVentaTitle_codPa}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_codPa}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_codPerso}" for="codPerso" />
+                    <h:inputText id="codPerso" value="#{facturaVentaController.selected.codPerso}" title="#{bundle.EditFacturaVentaTitle_codPerso}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_codPerso}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_codCli}" for="codCli" />
+                    <h:inputText id="codCli" value="#{facturaVentaController.selected.codCli}" title="#{bundle.EditFacturaVentaTitle_codCli}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_codCli}"/>
+                    <h:outputLabel value="#{bundle.EditFacturaVentaLabel_codEvento}" for="codEvento" />
+                    <h:inputText id="codEvento" value="#{facturaVentaController.selected.codEvento}" title="#{bundle.EditFacturaVentaTitle_codEvento}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_codEvento}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{facturaVentaController.update}" value="#{bundle.EditFacturaVentaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFacturaVentaViewLink}"/>
+                <br />
+                <h:commandLink action="#{facturaVentaController.prepareList}" value="#{bundle.EditFacturaVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFacturaVentaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

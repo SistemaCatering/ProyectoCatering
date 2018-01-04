@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEventoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEventoLabel_codEvento}"/>
+                    <h:outputText value="#{eventoController.selected.codEvento}" title="#{bundle.ViewEventoTitle_codEvento}"/>
+                    <h:outputText value="#{bundle.ViewEventoLabel_fechaEvento}"/>
+                    <h:outputText value="#{eventoController.selected.fechaEvento}" title="#{bundle.ViewEventoTitle_fechaEvento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEventoLabel_motivoEvento}"/>
+                    <h:outputText value="#{eventoController.selected.motivoEvento}" title="#{bundle.ViewEventoTitle_motivoEvento}"/>
+                    <h:outputText value="#{bundle.ViewEventoLabel_horaEvento}"/>
+                    <h:outputText value="#{eventoController.selected.horaEvento}" title="#{bundle.ViewEventoTitle_horaEvento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewEventoLabel_codLugar}"/>
+                    <h:outputText value="#{eventoController.selected.codLugar}" title="#{bundle.ViewEventoTitle_codLugar}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{eventoController.destroyAndView}" value="#{bundle.ViewEventoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEventoEditLink}"/>
+                <br />
+                <h:commandLink action="#{eventoController.prepareCreate}" value="#{bundle.ViewEventoCreateLink}" />
+                <br />
+                <h:commandLink action="#{eventoController.prepareList}" value="#{bundle.ViewEventoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEventoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

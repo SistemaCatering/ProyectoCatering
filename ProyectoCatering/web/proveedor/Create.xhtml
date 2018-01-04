@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_codProve}" for="codProve" />
+                    <h:inputText id="codProve" value="#{proveedorController.selected.codProve}" title="#{bundle.CreateProveedorTitle_codProve}" required="true" requiredMessage="#{bundle.CreateProveedorRequiredMessage_codProve}"/>
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_rucProve}" for="rucProve" />
+                    <h:inputText id="rucProve" value="#{proveedorController.selected.rucProve}" title="#{bundle.CreateProveedorTitle_rucProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_nombreProve}" for="nombreProve" />
+                    <h:inputText id="nombreProve" value="#{proveedorController.selected.nombreProve}" title="#{bundle.CreateProveedorTitle_nombreProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_direccionProve}" for="direccionProve" />
+                    <h:inputText id="direccionProve" value="#{proveedorController.selected.direccionProve}" title="#{bundle.CreateProveedorTitle_direccionProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_telefonoCasaProve}" for="telefonoCasaProve" />
+                    <h:inputText id="telefonoCasaProve" value="#{proveedorController.selected.telefonoCasaProve}" title="#{bundle.CreateProveedorTitle_telefonoCasaProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_telefonoCelularProve}" for="telefonoCelularProve" />
+                    <h:inputText id="telefonoCelularProve" value="#{proveedorController.selected.telefonoCelularProve}" title="#{bundle.CreateProveedorTitle_telefonoCelularProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_contactoProve}" for="contactoProve" />
+                    <h:inputText id="contactoProve" value="#{proveedorController.selected.contactoProve}" title="#{bundle.CreateProveedorTitle_contactoProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_sectorProve}" for="sectorProve" />
+                    <h:inputText id="sectorProve" value="#{proveedorController.selected.sectorProve}" title="#{bundle.CreateProveedorTitle_sectorProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_correoProve}" for="correoProve" />
+                    <h:inputText id="correoProve" value="#{proveedorController.selected.correoProve}" title="#{bundle.CreateProveedorTitle_correoProve}" />
+                    <h:outputLabel value="#{bundle.CreateProveedorLabel_transporteProve}" for="transporteProve" />
+                    <h:inputText id="transporteProve" value="#{proveedorController.selected.transporteProve}" title="#{bundle.CreateProveedorTitle_transporteProve}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proveedorController.create}" value="#{bundle.CreateProveedorSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.CreateProveedorShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProveedorIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

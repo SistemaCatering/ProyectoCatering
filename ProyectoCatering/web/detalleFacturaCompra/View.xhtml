@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDetalleFacturaCompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDetalleFacturaCompraLabel_detalleFacturaCompraPK_codFactc}"/>
+                    <h:outputText value="#{detalleFacturaCompraController.selected.detalleFacturaCompraPK.codFactc}" title="#{bundle.ViewDetalleFacturaCompraTitle_detalleFacturaCompraPK_codFactc}"/>
+                    <h:outputText value="#{bundle.ViewDetalleFacturaCompraLabel_detalleFacturaCompraPK_codIprove}"/>
+                    <h:outputText value="#{detalleFacturaCompraController.selected.detalleFacturaCompraPK.codIprove}" title="#{bundle.ViewDetalleFacturaCompraTitle_detalleFacturaCompraPK_codIprove}"/>
+                    <h:outputText value="#{bundle.ViewDetalleFacturaCompraLabel_cantidadDfc}"/>
+                    <h:outputText value="#{detalleFacturaCompraController.selected.cantidadDfc}" title="#{bundle.ViewDetalleFacturaCompraTitle_cantidadDfc}"/>
+                    <h:outputText value="#{bundle.ViewDetalleFacturaCompraLabel_descuentoDfc}"/>
+                    <h:outputText value="#{detalleFacturaCompraController.selected.descuentoDfc}" title="#{bundle.ViewDetalleFacturaCompraTitle_descuentoDfc}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleFacturaCompraController.destroyAndView}" value="#{bundle.ViewDetalleFacturaCompraDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDetalleFacturaCompraEditLink}"/>
+                <br />
+                <h:commandLink action="#{detalleFacturaCompraController.prepareCreate}" value="#{bundle.ViewDetalleFacturaCompraCreateLink}" />
+                <br />
+                <h:commandLink action="#{detalleFacturaCompraController.prepareList}" value="#{bundle.ViewDetalleFacturaCompraShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDetalleFacturaCompraIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

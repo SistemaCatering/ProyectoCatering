@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateItemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateItemLabel_codigoItem}" for="codigoItem" />
+                    <h:inputText id="codigoItem" value="#{itemController.selected.codigoItem}" title="#{bundle.CreateItemTitle_codigoItem}" required="true" requiredMessage="#{bundle.CreateItemRequiredMessage_codigoItem}"/>
+                    <h:outputLabel value="#{bundle.CreateItemLabel_descripcionItem}" for="descripcionItem" />
+                    <h:inputText id="descripcionItem" value="#{itemController.selected.descripcionItem}" title="#{bundle.CreateItemTitle_descripcionItem}" />
+                    <h:outputLabel value="#{bundle.CreateItemLabel_cantidadItem}" for="cantidadItem" />
+                    <h:inputText id="cantidadItem" value="#{itemController.selected.cantidadItem}" title="#{bundle.CreateItemTitle_cantidadItem}" />
+                    <h:outputLabel value="#{bundle.CreateItemLabel_estadoItem}" for="estadoItem" />
+                    <h:inputText id="estadoItem" value="#{itemController.selected.estadoItem}" title="#{bundle.CreateItemTitle_estadoItem}" />
+                    <h:outputLabel value="#{bundle.CreateItemLabel_ubicacionItem}" for="ubicacionItem" />
+                    <h:inputText id="ubicacionItem" value="#{itemController.selected.ubicacionItem}" title="#{bundle.CreateItemTitle_ubicacionItem}" />
+                    <h:outputLabel value="#{bundle.CreateItemLabel_codTipoItem}" for="codTipoItem" />
+                    <h:inputText id="codTipoItem" value="#{itemController.selected.codTipoItem}" title="#{bundle.CreateItemTitle_codTipoItem}" required="true" requiredMessage="#{bundle.CreateItemRequiredMessage_codTipoItem}"/>
+                    <h:outputLabel value="#{bundle.CreateItemLabel_valorItem}" for="valorItem" />
+                    <h:inputText id="valorItem" value="#{itemController.selected.valorItem}" title="#{bundle.CreateItemTitle_valorItem}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{itemController.create}" value="#{bundle.CreateItemSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{itemController.prepareList}" value="#{bundle.CreateItemShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateItemIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditParametrosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_codPa}" for="codPa" />
+                    <h:inputText id="codPa" value="#{parametrosController.selected.codPa}" title="#{bundle.EditParametrosTitle_codPa}" required="true" requiredMessage="#{bundle.EditParametrosRequiredMessage_codPa}"/>
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_rucPa}" for="rucPa" />
+                    <h:inputText id="rucPa" value="#{parametrosController.selected.rucPa}" title="#{bundle.EditParametrosTitle_rucPa}" />
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_nombreEmpresaPa}" for="nombreEmpresaPa" />
+                    <h:inputText id="nombreEmpresaPa" value="#{parametrosController.selected.nombreEmpresaPa}" title="#{bundle.EditParametrosTitle_nombreEmpresaPa}" />
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_direccionPa}" for="direccionPa" />
+                    <h:inputText id="direccionPa" value="#{parametrosController.selected.direccionPa}" title="#{bundle.EditParametrosTitle_direccionPa}" />
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_telefonoPa}" for="telefonoPa" />
+                    <h:inputText id="telefonoPa" value="#{parametrosController.selected.telefonoPa}" title="#{bundle.EditParametrosTitle_telefonoPa}" />
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_webPa}" for="webPa" />
+                    <h:inputText id="webPa" value="#{parametrosController.selected.webPa}" title="#{bundle.EditParametrosTitle_webPa}" />
+                    <h:outputLabel value="#{bundle.EditParametrosLabel_pathLogoPa}" for="pathLogoPa" />
+                    <h:inputText id="pathLogoPa" value="#{parametrosController.selected.pathLogoPa}" title="#{bundle.EditParametrosTitle_pathLogoPa}" />
+                </h:panelGrid>
+                <h:commandLink action="#{parametrosController.update}" value="#{bundle.EditParametrosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditParametrosViewLink}"/>
+                <br />
+                <h:commandLink action="#{parametrosController.prepareList}" value="#{bundle.EditParametrosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditParametrosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDetalleFacturaVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaVentaLabel_detalleFacturaVentaPK_codigoItem}" for="detalleFacturaVentaPK_codigoItem" />
+                    <h:inputText id="detalleFacturaVentaPK_codigoItem" value="#{detalleFacturaVentaController.selected.detalleFacturaVentaPK.codigoItem}" title="#{bundle.CreateDetalleFacturaVentaTitle_detalleFacturaVentaPK_codigoItem}" required="true" requiredMessage="#{bundle.CreateDetalleFacturaVentaRequiredMessage_detalleFacturaVentaPK_codigoItem}"/>
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaVentaLabel_detalleFacturaVentaPK_codFactv}" for="detalleFacturaVentaPK_codFactv" />
+                    <h:inputText id="detalleFacturaVentaPK_codFactv" value="#{detalleFacturaVentaController.selected.detalleFacturaVentaPK.codFactv}" title="#{bundle.CreateDetalleFacturaVentaTitle_detalleFacturaVentaPK_codFactv}" required="true" requiredMessage="#{bundle.CreateDetalleFacturaVentaRequiredMessage_detalleFacturaVentaPK_codFactv}"/>
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaVentaLabel_cantidadDfv}" for="cantidadDfv" />
+                    <h:inputText id="cantidadDfv" value="#{detalleFacturaVentaController.selected.cantidadDfv}" title="#{bundle.CreateDetalleFacturaVentaTitle_cantidadDfv}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaVentaLabel_descuentoDfv}" for="descuentoDfv" />
+                    <h:inputText id="descuentoDfv" value="#{detalleFacturaVentaController.selected.descuentoDfv}" title="#{bundle.CreateDetalleFacturaVentaTitle_descuentoDfv}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleFacturaVentaController.create}" value="#{bundle.CreateDetalleFacturaVentaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{detalleFacturaVentaController.prepareList}" value="#{bundle.CreateDetalleFacturaVentaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDetalleFacturaVentaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLugarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_codLugar}" for="codLugar" />
+                    <h:inputText id="codLugar" value="#{lugarController.selected.codLugar}" title="#{bundle.CreateLugarTitle_codLugar}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_codLugar}"/>
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_locacionLugar}" for="locacionLugar" />
+                    <h:inputText id="locacionLugar" value="#{lugarController.selected.locacionLugar}" title="#{bundle.CreateLugarTitle_locacionLugar}" />
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_nombreLugar}" for="nombreLugar" />
+                    <h:inputText id="nombreLugar" value="#{lugarController.selected.nombreLugar}" title="#{bundle.CreateLugarTitle_nombreLugar}" />
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_ciudadLugar}" for="ciudadLugar" />
+                    <h:inputText id="ciudadLugar" value="#{lugarController.selected.ciudadLugar}" title="#{bundle.CreateLugarTitle_ciudadLugar}" />
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_direccionLugar}" for="direccionLugar" />
+                    <h:inputText id="direccionLugar" value="#{lugarController.selected.direccionLugar}" title="#{bundle.CreateLugarTitle_direccionLugar}" />
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_capacidadLugar}" for="capacidadLugar" />
+                    <h:inputText id="capacidadLugar" value="#{lugarController.selected.capacidadLugar}" title="#{bundle.CreateLugarTitle_capacidadLugar}" />
+                    <h:outputLabel value="#{bundle.CreateLugarLabel_codTl}" for="codTl" />
+                    <h:inputText id="codTl" value="#{lugarController.selected.codTl}" title="#{bundle.CreateLugarTitle_codTl}" required="true" requiredMessage="#{bundle.CreateLugarRequiredMessage_codTl}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{lugarController.create}" value="#{bundle.CreateLugarSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.CreateLugarShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLugarIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

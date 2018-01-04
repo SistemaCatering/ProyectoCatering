@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListLugarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListLugarEmpty}" rendered="#{lugarController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{lugarController.items.rowCount > 0}">
+                    <h:outputText value="#{lugarController.pagination.pageFirstItem + 1}..#{lugarController.pagination.pageLastItem + 1}/#{lugarController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{lugarController.previous}" value="#{bundle.Previous} #{lugarController.pagination.pageSize}" rendered="#{lugarController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{lugarController.next}" value="#{bundle.Next} #{lugarController.pagination.pageSize}" rendered="#{lugarController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{lugarController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_codLugar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codLugar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_locacionLugar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.locacionLugar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_nombreLugar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreLugar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_ciudadLugar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ciudadLugar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_direccionLugar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.direccionLugar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_capacidadLugar}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.capacidadLugar}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLugarTitle_codTl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codTl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{lugarController.prepareView}" value="#{bundle.ListLugarViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{lugarController.prepareEdit}" value="#{bundle.ListLugarEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{lugarController.destroy}" value="#{bundle.ListLugarDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{lugarController.prepareCreate}" value="#{bundle.ListLugarCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListLugarIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

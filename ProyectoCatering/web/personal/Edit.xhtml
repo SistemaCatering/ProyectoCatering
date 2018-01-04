@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPersonalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPersonalLabel_codPerso}" for="codPerso" />
+                    <h:inputText id="codPerso" value="#{personalController.selected.codPerso}" title="#{bundle.EditPersonalTitle_codPerso}" required="true" requiredMessage="#{bundle.EditPersonalRequiredMessage_codPerso}"/>
+                    <h:outputLabel value="#{bundle.EditPersonalLabel_cedulaPerso}" for="cedulaPerso" />
+                    <h:inputText id="cedulaPerso" value="#{personalController.selected.cedulaPerso}" title="#{bundle.EditPersonalTitle_cedulaPerso}" />
+                    <h:outputLabel value="#{bundle.EditPersonalLabel_nombrePerso}" for="nombrePerso" />
+                    <h:inputText id="nombrePerso" value="#{personalController.selected.nombrePerso}" title="#{bundle.EditPersonalTitle_nombrePerso}" />
+                    <h:outputLabel value="#{bundle.EditPersonalLabel_direccionPerso}" for="direccionPerso" />
+                    <h:inputText id="direccionPerso" value="#{personalController.selected.direccionPerso}" title="#{bundle.EditPersonalTitle_direccionPerso}" />
+                    <h:outputLabel value="#{bundle.EditPersonalLabel_organizPerso}" for="organizPerso" />
+                    <h:inputText id="organizPerso" value="#{personalController.selected.organizPerso}" title="#{bundle.EditPersonalTitle_organizPerso}" />
+                </h:panelGrid>
+                <h:commandLink action="#{personalController.update}" value="#{bundle.EditPersonalSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPersonalViewLink}"/>
+                <br />
+                <h:commandLink action="#{personalController.prepareList}" value="#{bundle.EditPersonalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPersonalIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPersonalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPersonalLabel_codPerso}"/>
+                    <h:outputText value="#{personalController.selected.codPerso}" title="#{bundle.ViewPersonalTitle_codPerso}"/>
+                    <h:outputText value="#{bundle.ViewPersonalLabel_cedulaPerso}"/>
+                    <h:outputText value="#{personalController.selected.cedulaPerso}" title="#{bundle.ViewPersonalTitle_cedulaPerso}"/>
+                    <h:outputText value="#{bundle.ViewPersonalLabel_nombrePerso}"/>
+                    <h:outputText value="#{personalController.selected.nombrePerso}" title="#{bundle.ViewPersonalTitle_nombrePerso}"/>
+                    <h:outputText value="#{bundle.ViewPersonalLabel_direccionPerso}"/>
+                    <h:outputText value="#{personalController.selected.direccionPerso}" title="#{bundle.ViewPersonalTitle_direccionPerso}"/>
+                    <h:outputText value="#{bundle.ViewPersonalLabel_organizPerso}"/>
+                    <h:outputText value="#{personalController.selected.organizPerso}" title="#{bundle.ViewPersonalTitle_organizPerso}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personalController.destroyAndView}" value="#{bundle.ViewPersonalDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPersonalEditLink}"/>
+                <br />
+                <h:commandLink action="#{personalController.prepareCreate}" value="#{bundle.ViewPersonalCreateLink}" />
+                <br />
+                <h:commandLink action="#{personalController.prepareList}" value="#{bundle.ViewPersonalShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPersonalIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

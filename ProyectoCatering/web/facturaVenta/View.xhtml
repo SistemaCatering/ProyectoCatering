@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFacturaVentaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_codFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.codFactv}" title="#{bundle.ViewFacturaVentaTitle_codFactv}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_numeroFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.numeroFactv}" title="#{bundle.ViewFacturaVentaTitle_numeroFactv}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_fechaFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.fechaFactv}" title="#{bundle.ViewFacturaVentaTitle_fechaFactv}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_ivaFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.ivaFactv}" title="#{bundle.ViewFacturaVentaTitle_ivaFactv}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_descuentoFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.descuentoFactv}" title="#{bundle.ViewFacturaVentaTitle_descuentoFactv}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_subTotalFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.subTotalFactv}" title="#{bundle.ViewFacturaVentaTitle_subTotalFactv}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_totalFactv}"/>
+                    <h:outputText value="#{facturaVentaController.selected.totalFactv}" title="#{bundle.ViewFacturaVentaTitle_totalFactv}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_codPa}"/>
+                    <h:outputText value="#{facturaVentaController.selected.codPa}" title="#{bundle.ViewFacturaVentaTitle_codPa}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_codPerso}"/>
+                    <h:outputText value="#{facturaVentaController.selected.codPerso}" title="#{bundle.ViewFacturaVentaTitle_codPerso}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_codCli}"/>
+                    <h:outputText value="#{facturaVentaController.selected.codCli}" title="#{bundle.ViewFacturaVentaTitle_codCli}"/>
+                    <h:outputText value="#{bundle.ViewFacturaVentaLabel_codEvento}"/>
+                    <h:outputText value="#{facturaVentaController.selected.codEvento}" title="#{bundle.ViewFacturaVentaTitle_codEvento}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{facturaVentaController.destroyAndView}" value="#{bundle.ViewFacturaVentaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFacturaVentaEditLink}"/>
+                <br />
+                <h:commandLink action="#{facturaVentaController.prepareCreate}" value="#{bundle.ViewFacturaVentaCreateLink}" />
+                <br />
+                <h:commandLink action="#{facturaVentaController.prepareList}" value="#{bundle.ViewFacturaVentaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFacturaVentaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

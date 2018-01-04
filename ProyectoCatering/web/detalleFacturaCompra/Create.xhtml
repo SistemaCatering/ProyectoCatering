@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDetalleFacturaCompraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaCompraLabel_detalleFacturaCompraPK_codFactc}" for="detalleFacturaCompraPK_codFactc" />
+                    <h:inputText id="detalleFacturaCompraPK_codFactc" value="#{detalleFacturaCompraController.selected.detalleFacturaCompraPK.codFactc}" title="#{bundle.CreateDetalleFacturaCompraTitle_detalleFacturaCompraPK_codFactc}" required="true" requiredMessage="#{bundle.CreateDetalleFacturaCompraRequiredMessage_detalleFacturaCompraPK_codFactc}"/>
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaCompraLabel_detalleFacturaCompraPK_codIprove}" for="detalleFacturaCompraPK_codIprove" />
+                    <h:inputText id="detalleFacturaCompraPK_codIprove" value="#{detalleFacturaCompraController.selected.detalleFacturaCompraPK.codIprove}" title="#{bundle.CreateDetalleFacturaCompraTitle_detalleFacturaCompraPK_codIprove}" required="true" requiredMessage="#{bundle.CreateDetalleFacturaCompraRequiredMessage_detalleFacturaCompraPK_codIprove}"/>
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaCompraLabel_cantidadDfc}" for="cantidadDfc" />
+                    <h:inputText id="cantidadDfc" value="#{detalleFacturaCompraController.selected.cantidadDfc}" title="#{bundle.CreateDetalleFacturaCompraTitle_cantidadDfc}" />
+                    <h:outputLabel value="#{bundle.CreateDetalleFacturaCompraLabel_descuentoDfc}" for="descuentoDfc" />
+                    <h:inputText id="descuentoDfc" value="#{detalleFacturaCompraController.selected.descuentoDfc}" title="#{bundle.CreateDetalleFacturaCompraTitle_descuentoDfc}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detalleFacturaCompraController.create}" value="#{bundle.CreateDetalleFacturaCompraSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{detalleFacturaCompraController.prepareList}" value="#{bundle.CreateDetalleFacturaCompraShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDetalleFacturaCompraIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

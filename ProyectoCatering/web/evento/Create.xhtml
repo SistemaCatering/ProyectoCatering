@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEventoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEventoLabel_codEvento}" for="codEvento" />
+                    <h:inputText id="codEvento" value="#{eventoController.selected.codEvento}" title="#{bundle.CreateEventoTitle_codEvento}" required="true" requiredMessage="#{bundle.CreateEventoRequiredMessage_codEvento}"/>
+                    <h:outputLabel value="#{bundle.CreateEventoLabel_fechaEvento}" for="fechaEvento" />
+                    <h:inputText id="fechaEvento" value="#{eventoController.selected.fechaEvento}" title="#{bundle.CreateEventoTitle_fechaEvento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEventoLabel_motivoEvento}" for="motivoEvento" />
+                    <h:inputText id="motivoEvento" value="#{eventoController.selected.motivoEvento}" title="#{bundle.CreateEventoTitle_motivoEvento}" />
+                    <h:outputLabel value="#{bundle.CreateEventoLabel_horaEvento}" for="horaEvento" />
+                    <h:inputText id="horaEvento" value="#{eventoController.selected.horaEvento}" title="#{bundle.CreateEventoTitle_horaEvento}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateEventoLabel_codLugar}" for="codLugar" />
+                    <h:inputText id="codLugar" value="#{eventoController.selected.codLugar}" title="#{bundle.CreateEventoTitle_codLugar}" required="true" requiredMessage="#{bundle.CreateEventoRequiredMessage_codLugar}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{eventoController.create}" value="#{bundle.CreateEventoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{eventoController.prepareList}" value="#{bundle.CreateEventoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEventoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

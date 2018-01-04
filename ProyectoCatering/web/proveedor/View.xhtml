@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProveedorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProveedorLabel_codProve}"/>
+                    <h:outputText value="#{proveedorController.selected.codProve}" title="#{bundle.ViewProveedorTitle_codProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_rucProve}"/>
+                    <h:outputText value="#{proveedorController.selected.rucProve}" title="#{bundle.ViewProveedorTitle_rucProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_nombreProve}"/>
+                    <h:outputText value="#{proveedorController.selected.nombreProve}" title="#{bundle.ViewProveedorTitle_nombreProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_direccionProve}"/>
+                    <h:outputText value="#{proveedorController.selected.direccionProve}" title="#{bundle.ViewProveedorTitle_direccionProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_telefonoCasaProve}"/>
+                    <h:outputText value="#{proveedorController.selected.telefonoCasaProve}" title="#{bundle.ViewProveedorTitle_telefonoCasaProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_telefonoCelularProve}"/>
+                    <h:outputText value="#{proveedorController.selected.telefonoCelularProve}" title="#{bundle.ViewProveedorTitle_telefonoCelularProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_contactoProve}"/>
+                    <h:outputText value="#{proveedorController.selected.contactoProve}" title="#{bundle.ViewProveedorTitle_contactoProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_sectorProve}"/>
+                    <h:outputText value="#{proveedorController.selected.sectorProve}" title="#{bundle.ViewProveedorTitle_sectorProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_correoProve}"/>
+                    <h:outputText value="#{proveedorController.selected.correoProve}" title="#{bundle.ViewProveedorTitle_correoProve}"/>
+                    <h:outputText value="#{bundle.ViewProveedorLabel_transporteProve}"/>
+                    <h:outputText value="#{proveedorController.selected.transporteProve}" title="#{bundle.ViewProveedorTitle_transporteProve}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{proveedorController.destroyAndView}" value="#{bundle.ViewProveedorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProveedorEditLink}"/>
+                <br />
+                <h:commandLink action="#{proveedorController.prepareCreate}" value="#{bundle.ViewProveedorCreateLink}" />
+                <br />
+                <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.ViewProveedorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProveedorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

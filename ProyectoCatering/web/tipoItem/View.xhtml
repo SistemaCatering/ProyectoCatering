@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTipoItemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTipoItemLabel_codTipoItem}"/>
+                    <h:outputText value="#{tipoItemController.selected.codTipoItem}" title="#{bundle.ViewTipoItemTitle_codTipoItem}"/>
+                    <h:outputText value="#{bundle.ViewTipoItemLabel_nombreTipoItem}"/>
+                    <h:outputText value="#{tipoItemController.selected.nombreTipoItem}" title="#{bundle.ViewTipoItemTitle_nombreTipoItem}"/>
+                    <h:outputText value="#{bundle.ViewTipoItemLabel_descripcionTipoItem}"/>
+                    <h:outputText value="#{tipoItemController.selected.descripcionTipoItem}" title="#{bundle.ViewTipoItemTitle_descripcionTipoItem}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tipoItemController.destroyAndView}" value="#{bundle.ViewTipoItemDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTipoItemEditLink}"/>
+                <br />
+                <h:commandLink action="#{tipoItemController.prepareCreate}" value="#{bundle.ViewTipoItemCreateLink}" />
+                <br />
+                <h:commandLink action="#{tipoItemController.prepareList}" value="#{bundle.ViewTipoItemShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTipoItemIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
