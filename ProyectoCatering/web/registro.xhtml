@@ -74,7 +74,7 @@ and open the template in the editor.
                             </tr>
                         </table>
                         <br/>
-                        <h:commandButton class="button button-block" id="empezar" value="Empezar" action="visualizador.xhtml"/>
+                        <h:commandButton class="button button-block" id="empezar" value="Empezar" action="#{usuarioBean.guardar()}"  />
                     </h:form>
                 </div>
 
@@ -83,18 +83,18 @@ and open the template in the editor.
                     <h:form prependId="false">
                         <table>
                             <tr>
-                                <th class="etiqueta"><h:outputText value="Nombre"/><span class="req">*</span></th>
-                                <td><h:inputText required="true" value="#{usuarioBean.usuario.nombreUsu}"/>  </td>
+                                <th class="etiqueta"><h:outputText value="Email"/><span class="req">*</span></th>
+                                <td><h:inputText id="em" required="true" value="#{usuarioBean.usuario.emailUsu}"/>  </td>
                             </tr>
                             <tr>
                                 <th class="etiqueta"><h:outputText value="Contrasena"/><span class="req">*</span></th>
-                                <td><h:inputSecret required="true" value="#{usuarioBean.usuario.contrasenaUsu}"/>  </td>
+                                <td><h:inputSecret id="con" required="true" value="#{usuarioBean.usuario.contrasenaUsu}"/>  </td>
                             </tr>
                         </table>
                         <br/><br/>
                         <p class="forgot"><a href="#">Olvido su contrasena?</a></p>
                         <br/>
-                        <h:commandButton class="button button-block" id="iniciar" value="Iniciar" action="visualizador.xhtml"/>
+                        <h:commandButton class="button button-block" id="iniciar" value="Iniciar" action="#{usuarioBean.login()}" />
                     </h:form>
                 </div>
             </div>

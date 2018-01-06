@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Lugar;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.LugarFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.LugarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Lugar;
 
 @Named("lugarController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class LugarController implements Serializable {
     private Lugar current;
     private DataModel items = null;
     @EJB
-    private beans.LugarFacade ejbFacade;
+    private facade.LugarFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

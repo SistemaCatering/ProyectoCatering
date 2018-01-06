@@ -1,9 +1,8 @@
 package dao;
 
-import entities.TipoItem;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.TipoItemFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.TipoItemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.TipoItem;
 
 @Named("tipoItemController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class TipoItemController implements Serializable {
     private TipoItem current;
     private DataModel items = null;
     @EJB
-    private beans.TipoItemFacade ejbFacade;
+    private facade.TipoItemFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

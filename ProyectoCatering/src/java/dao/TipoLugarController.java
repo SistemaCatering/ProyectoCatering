@@ -1,9 +1,8 @@
 package dao;
 
-import entities.TipoLugar;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.TipoLugarFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.TipoLugarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.TipoLugar;
 
 @Named("tipoLugarController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class TipoLugarController implements Serializable {
     private TipoLugar current;
     private DataModel items = null;
     @EJB
-    private beans.TipoLugarFacade ejbFacade;
+    private facade.TipoLugarFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

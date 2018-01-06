@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Item;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.ItemFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.ItemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,8 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Item;
+
 
 @Named("itemController")
 @SessionScoped
@@ -25,7 +26,7 @@ public class ItemController implements Serializable {
     private Item current;
     private DataModel items = null;
     @EJB
-    private beans.ItemFacade ejbFacade;
+    private facade.ItemFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

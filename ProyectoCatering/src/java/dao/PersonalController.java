@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Personal;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.PersonalFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.PersonalFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Personal;
 
 @Named("personalController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class PersonalController implements Serializable {
     private Personal current;
     private DataModel items = null;
     @EJB
-    private beans.PersonalFacade ejbFacade;
+    private facade.PersonalFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

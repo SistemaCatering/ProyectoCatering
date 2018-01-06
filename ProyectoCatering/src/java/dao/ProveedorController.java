@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Proveedor;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.ProveedorFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.ProveedorFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Proveedor;
 
 @Named("proveedorController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class ProveedorController implements Serializable {
     private Proveedor current;
     private DataModel items = null;
     @EJB
-    private beans.ProveedorFacade ejbFacade;
+    private facade.ProveedorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

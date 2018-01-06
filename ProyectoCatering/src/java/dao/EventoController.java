@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Evento;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.EventoFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.EventoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Evento;
 
 @Named("eventoController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class EventoController implements Serializable {
     private Evento current;
     private DataModel items = null;
     @EJB
-    private beans.EventoFacade ejbFacade;
+    private facade.EventoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

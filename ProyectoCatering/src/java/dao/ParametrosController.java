@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Parametros;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.ParametrosFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.ParametrosFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Parametros;
 
 @Named("parametrosController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class ParametrosController implements Serializable {
     private Parametros current;
     private DataModel items = null;
     @EJB
-    private beans.ParametrosFacade ejbFacade;
+    private facade.ParametrosFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

@@ -1,9 +1,8 @@
 package dao;
 
-import entities.FacturaCompra;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.FacturaCompraFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.FacturaCompraFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.FacturaCompra;
 
 @Named("facturaCompraController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class FacturaCompraController implements Serializable {
     private FacturaCompra current;
     private DataModel items = null;
     @EJB
-    private beans.FacturaCompraFacade ejbFacade;
+    private facade.FacturaCompraFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

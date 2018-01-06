@@ -1,9 +1,8 @@
 package dao;
 
-import entities.FacturaVenta;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.FacturaVentaFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.FacturaVentaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.FacturaVenta;
 
 @Named("facturaVentaController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class FacturaVentaController implements Serializable {
     private FacturaVenta current;
     private DataModel items = null;
     @EJB
-    private beans.FacturaVentaFacade ejbFacade;
+    private facade.FacturaVentaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

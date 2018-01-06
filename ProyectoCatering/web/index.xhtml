@@ -14,13 +14,6 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/cuerpo.js"></script>
-        <script>
-            function redireccionar() {
-                var pagina = "registro.xhtml";
-                location.href = pagina;
-            }
-            );
-        </script>
     </h:head>
     <h:body>
         <h:form>
@@ -50,10 +43,10 @@
                             <h:commandLink class="a"> <!--href="servicios.xhtml"-->Servicios</h:commandLink>
                             <h:commandLink class="a"><!-- href="#"-->Productos</h:commandLink>
                             <h:commandLink class="a"><!-- href="#"-->Photography</h:commandLink>
-                            </div>
-                        </li>
-                        <li>
-                        <h:commandLink class="a"><!-- href="galeria.xhtml"-->
+                        </div>
+                    </li>
+                    <li>
+                        <h:commandLink class="a" action="#{navegacionBean.paginaGaleria()}">
                             <img src="images/3.jpg" alt=""/>
                             <span class="sdt_active"></span>
                             <span class="sdt_wrap">
@@ -73,7 +66,8 @@
                         </h:commandLink>
                     </li>
                     <li>
-                        <h:commandLink class="a" action="#{usuarioBean.pagina()}">
+
+                        <h:commandLink class="a" action="#{navegacionBean.paginaRegistro()}">
                             <img src="images/5.jpg" alt=""/>
                             <span class="sdt_active"></span>
                             <span class="sdt_wrap">
@@ -96,18 +90,12 @@
                             <h:commandLink class="a"> <!--href="#"-->Job Board Website</h:commandLink>
                             <h:commandLink class="a"><!--href="#"-->Shopping Cart</h:commandLink>
                             <h:commandLink class="a"> <!--href="#"-->Interactive Maps</h:commandLink>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </h:form>
-        <div>
-            <span class="reference">
-                <a href="http://tympanus.net/codrops/2010/07/16/slide-down-box-menu/">back to the Codrops Tutorial</a>
-                <a href="http://www.flickr.com/photos/arcticpuppy/sets/72157622090180990/">Images by tibchris</a>
-            </span>
-        </div>
-        <div>
+        <!--<div>
             <br />
             <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
             <br />
@@ -136,91 +124,7 @@
             <h:link outcome="/tipoItem/List" value="Show All TipoItem Items"/>
             <br />
             <h:link outcome="/tipoLugar/List" value="Show All TipoLugar Items"/>
-        </div>
-        <br />
-        <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
-        <br />
-        <h:link outcome="/detalleFacturaCompra/List" value="Show All DetalleFacturaCompra Items"/>
-        <br />
-        <h:link outcome="/detalleFacturaVenta/List" value="Show All DetalleFacturaVenta Items"/>
-        <br />
-        <h:link outcome="/evento/List" value="Show All Evento Items"/>
-        <br />
-        <h:link outcome="/facturaCompra/List" value="Show All FacturaCompra Items"/>
-        <br />
-        <h:link outcome="/facturaVenta/List" value="Show All FacturaVenta Items"/>
-        <br />
-        <h:link outcome="/item/List" value="Show All Item Items"/>
-        <br />
-        <h:link outcome="/itemProveedor/List" value="Show All ItemProveedor Items"/>
-        <br />
-        <h:link outcome="/lugar/List" value="Show All Lugar Items"/>
-        <br />
-        <h:link outcome="/parametros/List" value="Show All Parametros Items"/>
-        <br />
-        <h:link outcome="/personal/List" value="Show All Personal Items"/>
-        <br />
-        <h:link outcome="/proveedor/List" value="Show All Proveedor Items"/>
-        <br />
-        <h:link outcome="/tipoItem/List" value="Show All TipoItem Items"/>
-        <br />
-        <h:link outcome="/tipoLugar/List" value="Show All TipoLugar Items"/>
-        <br />
-        <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
-        <br />
-        <h:link outcome="/detalleFacturaCompra/List" value="Show All DetalleFacturaCompra Items"/>
-        <br />
-        <h:link outcome="/detalleFacturaVenta/List" value="Show All DetalleFacturaVenta Items"/>
-        <br />
-        <h:link outcome="/evento/List" value="Show All Evento Items"/>
-        <br />
-        <h:link outcome="/facturaCompra/List" value="Show All FacturaCompra Items"/>
-        <br />
-        <h:link outcome="/facturaVenta/List" value="Show All FacturaVenta Items"/>
-        <br />
-        <h:link outcome="/item/List" value="Show All Item Items"/>
-        <br />
-        <h:link outcome="/itemProveedor/List" value="Show All ItemProveedor Items"/>
-        <br />
-        <h:link outcome="/lugar/List" value="Show All Lugar Items"/>
-        <br />
-        <h:link outcome="/parametros/List" value="Show All Parametros Items"/>
-        <br />
-        <h:link outcome="/personal/List" value="Show All Personal Items"/>
-        <br />
-        <h:link outcome="/proveedor/List" value="Show All Proveedor Items"/>
-        <br />
-        <h:link outcome="/tipoItem/List" value="Show All TipoItem Items"/>
-        <br />
-        <h:link outcome="/tipoLugar/List" value="Show All TipoLugar Items"/>
+        </div>-->
     </h:body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
 

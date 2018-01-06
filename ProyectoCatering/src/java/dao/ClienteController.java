@@ -1,9 +1,8 @@
 package dao;
 
-import entities.Cliente;
-import dao.util.JsfUtil;
-import dao.util.PaginationHelper;
-import beans.ClienteFacade;
+import entities.util.JsfUtil;
+import entities.util.PaginationHelper;
+import facade.ClienteFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,6 +16,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import entities.Cliente;
 
 @Named("clienteController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class ClienteController implements Serializable {
     private Cliente current;
     private DataModel items = null;
     @EJB
-    private beans.ClienteFacade ejbFacade;
+    private facade.ClienteFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -233,3 +233,4 @@ public class ClienteController implements Serializable {
     }
 
 }
+//>>>>>>> origin/master:ProyectoCatering/src/java/entities/ClienteController.java
