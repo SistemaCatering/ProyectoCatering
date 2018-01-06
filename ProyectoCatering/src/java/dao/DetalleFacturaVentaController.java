@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.FacturaCompraFacade;
+import entities.DetalleFacturaVenta;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.DetalleFacturaVentaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,30 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("facturaCompraController")
+@Named("detalleFacturaVentaController")
 @SessionScoped
-public class FacturaCompraController implements Serializable {
+public class DetalleFacturaVentaController implements Serializable {
 
-    private FacturaCompra current;
+    private DetalleFacturaVenta current;
     private DataModel items = null;
     @EJB
-    private beans.FacturaCompraFacade ejbFacade;
+    private beans.DetalleFacturaVentaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public FacturaCompraController() {
+    public DetalleFacturaVentaController() {
     }
 
-    public FacturaCompra getSelected() {
+    public DetalleFacturaVenta getSelected() {
         if (current == null) {
-            current = new FacturaCompra();
+            current = new DetalleFacturaVenta();
+            current.setDetalleFacturaVentaPK(new entities.DetalleFacturaVentaPK());
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private FacturaCompraFacade getFacade() {
+    private DetalleFacturaVentaFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +69,14 @@ public class FacturaCompraController implements Serializable {
     }
 
     public String prepareView() {
-        current = (FacturaCompra) getItems().getRowData();
+        current = (DetalleFacturaVenta) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new FacturaCompra();
+        current = new DetalleFacturaVenta();
+        current.setDetalleFacturaVentaPK(new entities.DetalleFacturaVentaPK());
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +84,7 @@ public class FacturaCompraController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaCompraCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaVentaCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +93,7 @@ public class FacturaCompraController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (FacturaCompra) getItems().getRowData();
+        current = (DetalleFacturaVenta) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +101,7 @@ public class FacturaCompraController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaCompraUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaVentaUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +110,7 @@ public class FacturaCompraController implements Serializable {
     }
 
     public String destroy() {
-        current = (FacturaCompra) getItems().getRowData();
+        current = (DetalleFacturaVenta) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +134,7 @@ public class FacturaCompraController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaCompraDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaVentaDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,32 +190,40 @@ public class FacturaCompraController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public FacturaCompra getFacturaCompra(java.lang.Integer id) {
+    public DetalleFacturaVenta getDetalleFacturaVenta(entities.DetalleFacturaVentaPK id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = FacturaCompra.class)
-    public static class FacturaCompraControllerConverter implements Converter {
+    @FacesConverter(forClass = DetalleFacturaVenta.class)
+    public static class DetalleFacturaVentaControllerConverter implements Converter {
+
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FacturaCompraController controller = (FacturaCompraController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "facturaCompraController");
-            return controller.getFacturaCompra(getKey(value));
+            DetalleFacturaVentaController controller = (DetalleFacturaVentaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "detalleFacturaVentaController");
+            return controller.getDetalleFacturaVenta(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        entities.DetalleFacturaVentaPK getKey(String value) {
+            entities.DetalleFacturaVentaPK key;
+            String values[] = value.split(SEPARATOR_ESCAPED);
+            key = new entities.DetalleFacturaVentaPK();
+            key.setCodigoItem(Integer.parseInt(values[0]));
+            key.setCodFactv(Integer.parseInt(values[1]));
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(entities.DetalleFacturaVentaPK value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value);
+            sb.append(value.getCodigoItem());
+            sb.append(SEPARATOR);
+            sb.append(value.getCodFactv());
             return sb.toString();
         }
 
@@ -221,11 +232,11 @@ public class FacturaCompraController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof FacturaCompra) {
-                FacturaCompra o = (FacturaCompra) object;
-                return getStringKey(o.getCodFactc());
+            if (object instanceof DetalleFacturaVenta) {
+                DetalleFacturaVenta o = (DetalleFacturaVenta) object;
+                return getStringKey(o.getDetalleFacturaVentaPK());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + FacturaCompra.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + DetalleFacturaVenta.class.getName());
             }
         }
 

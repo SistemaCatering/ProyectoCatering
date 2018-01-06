@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.TipoItemFacade;
+import entities.Parametros;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.ParametrosFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("tipoItemController")
+@Named("parametrosController")
 @SessionScoped
-public class TipoItemController implements Serializable {
+public class ParametrosController implements Serializable {
 
-    private TipoItem current;
+    private Parametros current;
     private DataModel items = null;
     @EJB
-    private beans.TipoItemFacade ejbFacade;
+    private beans.ParametrosFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public TipoItemController() {
+    public ParametrosController() {
     }
 
-    public TipoItem getSelected() {
+    public Parametros getSelected() {
         if (current == null) {
-            current = new TipoItem();
+            current = new Parametros();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private TipoItemFacade getFacade() {
+    private ParametrosFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class TipoItemController implements Serializable {
     }
 
     public String prepareView() {
-        current = (TipoItem) getItems().getRowData();
+        current = (Parametros) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new TipoItem();
+        current = new Parametros();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class TipoItemController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoItemCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParametrosCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class TipoItemController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (TipoItem) getItems().getRowData();
+        current = (Parametros) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class TipoItemController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoItemUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParametrosUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class TipoItemController implements Serializable {
     }
 
     public String destroy() {
-        current = (TipoItem) getItems().getRowData();
+        current = (Parametros) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class TipoItemController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoItemDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParametrosDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class TipoItemController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public TipoItem getTipoItem(java.lang.Integer id) {
+    public Parametros getParametros(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = TipoItem.class)
-    public static class TipoItemControllerConverter implements Converter {
+    @FacesConverter(forClass = Parametros.class)
+    public static class ParametrosControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TipoItemController controller = (TipoItemController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "tipoItemController");
-            return controller.getTipoItem(getKey(value));
+            ParametrosController controller = (ParametrosController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "parametrosController");
+            return controller.getParametros(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class TipoItemController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof TipoItem) {
-                TipoItem o = (TipoItem) object;
-                return getStringKey(o.getCodTipoItem());
+            if (object instanceof Parametros) {
+                Parametros o = (Parametros) object;
+                return getStringKey(o.getCodPa());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TipoItem.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Parametros.class.getName());
             }
         }
 

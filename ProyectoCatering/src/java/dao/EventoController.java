@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.LugarFacade;
+import entities.Evento;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.EventoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("lugarController")
+@Named("eventoController")
 @SessionScoped
-public class LugarController implements Serializable {
+public class EventoController implements Serializable {
 
-    private Lugar current;
+    private Evento current;
     private DataModel items = null;
     @EJB
-    private beans.LugarFacade ejbFacade;
+    private beans.EventoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public LugarController() {
+    public EventoController() {
     }
 
-    public Lugar getSelected() {
+    public Evento getSelected() {
         if (current == null) {
-            current = new Lugar();
+            current = new Evento();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private LugarFacade getFacade() {
+    private EventoFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class LugarController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Lugar) getItems().getRowData();
+        current = (Evento) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Lugar();
+        current = new Evento();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class LugarController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LugarCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EventoCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class LugarController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Lugar) getItems().getRowData();
+        current = (Evento) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class LugarController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LugarUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EventoUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class LugarController implements Serializable {
     }
 
     public String destroy() {
-        current = (Lugar) getItems().getRowData();
+        current = (Evento) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class LugarController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LugarDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EventoDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class LugarController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Lugar getLugar(java.lang.Integer id) {
+    public Evento getEvento(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Lugar.class)
-    public static class LugarControllerConverter implements Converter {
+    @FacesConverter(forClass = Evento.class)
+    public static class EventoControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            LugarController controller = (LugarController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "lugarController");
-            return controller.getLugar(getKey(value));
+            EventoController controller = (EventoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "eventoController");
+            return controller.getEvento(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class LugarController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Lugar) {
-                Lugar o = (Lugar) object;
-                return getStringKey(o.getCodLugar());
+            if (object instanceof Evento) {
+                Evento o = (Evento) object;
+                return getStringKey(o.getCodEvento());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Lugar.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Evento.class.getName());
             }
         }
 

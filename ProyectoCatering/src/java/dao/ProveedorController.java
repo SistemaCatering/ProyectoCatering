@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.FacturaVentaFacade;
+import entities.Proveedor;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.ProveedorFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("facturaVentaController")
+@Named("proveedorController")
 @SessionScoped
-public class FacturaVentaController implements Serializable {
+public class ProveedorController implements Serializable {
 
-    private FacturaVenta current;
+    private Proveedor current;
     private DataModel items = null;
     @EJB
-    private beans.FacturaVentaFacade ejbFacade;
+    private beans.ProveedorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public FacturaVentaController() {
+    public ProveedorController() {
     }
 
-    public FacturaVenta getSelected() {
+    public Proveedor getSelected() {
         if (current == null) {
-            current = new FacturaVenta();
+            current = new Proveedor();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private FacturaVentaFacade getFacade() {
+    private ProveedorFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class FacturaVentaController implements Serializable {
     }
 
     public String prepareView() {
-        current = (FacturaVenta) getItems().getRowData();
+        current = (Proveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new FacturaVenta();
+        current = new Proveedor();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class FacturaVentaController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaVentaCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProveedorCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class FacturaVentaController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (FacturaVenta) getItems().getRowData();
+        current = (Proveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class FacturaVentaController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaVentaUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProveedorUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class FacturaVentaController implements Serializable {
     }
 
     public String destroy() {
-        current = (FacturaVenta) getItems().getRowData();
+        current = (Proveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class FacturaVentaController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaVentaDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProveedorDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class FacturaVentaController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public FacturaVenta getFacturaVenta(java.lang.Integer id) {
+    public Proveedor getProveedor(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = FacturaVenta.class)
-    public static class FacturaVentaControllerConverter implements Converter {
+    @FacesConverter(forClass = Proveedor.class)
+    public static class ProveedorControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FacturaVentaController controller = (FacturaVentaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "facturaVentaController");
-            return controller.getFacturaVenta(getKey(value));
+            ProveedorController controller = (ProveedorController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "proveedorController");
+            return controller.getProveedor(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class FacturaVentaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof FacturaVenta) {
-                FacturaVenta o = (FacturaVenta) object;
-                return getStringKey(o.getCodFactv());
+            if (object instanceof Proveedor) {
+                Proveedor o = (Proveedor) object;
+                return getStringKey(o.getCodProve());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + FacturaVenta.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Proveedor.class.getName());
             }
         }
 

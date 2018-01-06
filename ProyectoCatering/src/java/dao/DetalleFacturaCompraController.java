@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.ProveedorFacade;
+import entities.DetalleFacturaCompra;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.DetalleFacturaCompraFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,30 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("proveedorController")
+@Named("detalleFacturaCompraController")
 @SessionScoped
-public class ProveedorController implements Serializable {
+public class DetalleFacturaCompraController implements Serializable {
 
-    private Proveedor current;
+    private DetalleFacturaCompra current;
     private DataModel items = null;
     @EJB
-    private beans.ProveedorFacade ejbFacade;
+    private beans.DetalleFacturaCompraFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ProveedorController() {
+    public DetalleFacturaCompraController() {
     }
 
-    public Proveedor getSelected() {
+    public DetalleFacturaCompra getSelected() {
         if (current == null) {
-            current = new Proveedor();
+            current = new DetalleFacturaCompra();
+            current.setDetalleFacturaCompraPK(new entities.DetalleFacturaCompraPK());
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ProveedorFacade getFacade() {
+    private DetalleFacturaCompraFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +69,14 @@ public class ProveedorController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Proveedor) getItems().getRowData();
+        current = (DetalleFacturaCompra) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Proveedor();
+        current = new DetalleFacturaCompra();
+        current.setDetalleFacturaCompraPK(new entities.DetalleFacturaCompraPK());
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +84,7 @@ public class ProveedorController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProveedorCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaCompraCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +93,7 @@ public class ProveedorController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Proveedor) getItems().getRowData();
+        current = (DetalleFacturaCompra) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +101,7 @@ public class ProveedorController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProveedorUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaCompraUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +110,7 @@ public class ProveedorController implements Serializable {
     }
 
     public String destroy() {
-        current = (Proveedor) getItems().getRowData();
+        current = (DetalleFacturaCompra) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +134,7 @@ public class ProveedorController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProveedorDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaCompraDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,32 +190,40 @@ public class ProveedorController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Proveedor getProveedor(java.lang.Integer id) {
+    public DetalleFacturaCompra getDetalleFacturaCompra(entities.DetalleFacturaCompraPK id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Proveedor.class)
-    public static class ProveedorControllerConverter implements Converter {
+    @FacesConverter(forClass = DetalleFacturaCompra.class)
+    public static class DetalleFacturaCompraControllerConverter implements Converter {
+
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ProveedorController controller = (ProveedorController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "proveedorController");
-            return controller.getProveedor(getKey(value));
+            DetalleFacturaCompraController controller = (DetalleFacturaCompraController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "detalleFacturaCompraController");
+            return controller.getDetalleFacturaCompra(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        entities.DetalleFacturaCompraPK getKey(String value) {
+            entities.DetalleFacturaCompraPK key;
+            String values[] = value.split(SEPARATOR_ESCAPED);
+            key = new entities.DetalleFacturaCompraPK();
+            key.setCodIprove(Integer.parseInt(values[0]));
+            key.setCodFactc(Integer.parseInt(values[1]));
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(entities.DetalleFacturaCompraPK value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value);
+            sb.append(value.getCodIprove());
+            sb.append(SEPARATOR);
+            sb.append(value.getCodFactc());
             return sb.toString();
         }
 
@@ -221,11 +232,11 @@ public class ProveedorController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Proveedor) {
-                Proveedor o = (Proveedor) object;
-                return getStringKey(o.getCodProve());
+            if (object instanceof DetalleFacturaCompra) {
+                DetalleFacturaCompra o = (DetalleFacturaCompra) object;
+                return getStringKey(o.getDetalleFacturaCompraPK());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Proveedor.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + DetalleFacturaCompra.class.getName());
             }
         }
 

@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.DetalleFacturaCompraFacade;
+import entities.TipoLugar;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.TipoLugarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,30 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("detalleFacturaCompraController")
+@Named("tipoLugarController")
 @SessionScoped
-public class DetalleFacturaCompraController implements Serializable {
+public class TipoLugarController implements Serializable {
 
-    private DetalleFacturaCompra current;
+    private TipoLugar current;
     private DataModel items = null;
     @EJB
-    private beans.DetalleFacturaCompraFacade ejbFacade;
+    private beans.TipoLugarFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public DetalleFacturaCompraController() {
+    public TipoLugarController() {
     }
 
-    public DetalleFacturaCompra getSelected() {
+    public TipoLugar getSelected() {
         if (current == null) {
-            current = new DetalleFacturaCompra();
-            current.setDetalleFacturaCompraPK(new entities.DetalleFacturaCompraPK());
+            current = new TipoLugar();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private DetalleFacturaCompraFacade getFacade() {
+    private TipoLugarFacade getFacade() {
         return ejbFacade;
     }
 
@@ -68,14 +68,13 @@ public class DetalleFacturaCompraController implements Serializable {
     }
 
     public String prepareView() {
-        current = (DetalleFacturaCompra) getItems().getRowData();
+        current = (TipoLugar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new DetalleFacturaCompra();
-        current.setDetalleFacturaCompraPK(new entities.DetalleFacturaCompraPK());
+        current = new TipoLugar();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -83,7 +82,7 @@ public class DetalleFacturaCompraController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaCompraCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoLugarCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -92,7 +91,7 @@ public class DetalleFacturaCompraController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (DetalleFacturaCompra) getItems().getRowData();
+        current = (TipoLugar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -100,7 +99,7 @@ public class DetalleFacturaCompraController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaCompraUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoLugarUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -109,7 +108,7 @@ public class DetalleFacturaCompraController implements Serializable {
     }
 
     public String destroy() {
-        current = (DetalleFacturaCompra) getItems().getRowData();
+        current = (TipoLugar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -133,7 +132,7 @@ public class DetalleFacturaCompraController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DetalleFacturaCompraDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoLugarDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -189,40 +188,32 @@ public class DetalleFacturaCompraController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public DetalleFacturaCompra getDetalleFacturaCompra(entities.DetalleFacturaCompraPK id) {
+    public TipoLugar getTipoLugar(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = DetalleFacturaCompra.class)
-    public static class DetalleFacturaCompraControllerConverter implements Converter {
-
-        private static final String SEPARATOR = "#";
-        private static final String SEPARATOR_ESCAPED = "\\#";
+    @FacesConverter(forClass = TipoLugar.class)
+    public static class TipoLugarControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DetalleFacturaCompraController controller = (DetalleFacturaCompraController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "detalleFacturaCompraController");
-            return controller.getDetalleFacturaCompra(getKey(value));
+            TipoLugarController controller = (TipoLugarController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "tipoLugarController");
+            return controller.getTipoLugar(getKey(value));
         }
 
-        entities.DetalleFacturaCompraPK getKey(String value) {
-            entities.DetalleFacturaCompraPK key;
-            String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new entities.DetalleFacturaCompraPK();
-            key.setCodIprove(Integer.parseInt(values[0]));
-            key.setCodFactc(Integer.parseInt(values[1]));
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(entities.DetalleFacturaCompraPK value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getCodIprove());
-            sb.append(SEPARATOR);
-            sb.append(value.getCodFactc());
+            sb.append(value);
             return sb.toString();
         }
 
@@ -231,11 +222,11 @@ public class DetalleFacturaCompraController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof DetalleFacturaCompra) {
-                DetalleFacturaCompra o = (DetalleFacturaCompra) object;
-                return getStringKey(o.getDetalleFacturaCompraPK());
+            if (object instanceof TipoLugar) {
+                TipoLugar o = (TipoLugar) object;
+                return getStringKey(o.getCodTl());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + DetalleFacturaCompra.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TipoLugar.class.getName());
             }
         }
 

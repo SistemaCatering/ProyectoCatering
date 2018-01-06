@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.ItemFacade;
+import entities.TipoItem;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.TipoItemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("itemController")
+@Named("tipoItemController")
 @SessionScoped
-public class ItemController implements Serializable {
+public class TipoItemController implements Serializable {
 
-    private Item current;
+    private TipoItem current;
     private DataModel items = null;
     @EJB
-    private beans.ItemFacade ejbFacade;
+    private beans.TipoItemFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ItemController() {
+    public TipoItemController() {
     }
 
-    public Item getSelected() {
+    public TipoItem getSelected() {
         if (current == null) {
-            current = new Item();
+            current = new TipoItem();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ItemFacade getFacade() {
+    private TipoItemFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class ItemController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Item) getItems().getRowData();
+        current = (TipoItem) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Item();
+        current = new TipoItem();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class ItemController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoItemCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class ItemController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Item) getItems().getRowData();
+        current = (TipoItem) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class ItemController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoItemUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class ItemController implements Serializable {
     }
 
     public String destroy() {
-        current = (Item) getItems().getRowData();
+        current = (TipoItem) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class ItemController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoItemDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class ItemController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Item getItem(java.lang.Integer id) {
+    public TipoItem getTipoItem(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Item.class)
-    public static class ItemControllerConverter implements Converter {
+    @FacesConverter(forClass = TipoItem.class)
+    public static class TipoItemControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ItemController controller = (ItemController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "itemController");
-            return controller.getItem(getKey(value));
+            TipoItemController controller = (TipoItemController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "tipoItemController");
+            return controller.getTipoItem(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class ItemController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Item) {
-                Item o = (Item) object;
-                return getStringKey(o.getCodigoItem());
+            if (object instanceof TipoItem) {
+                TipoItem o = (TipoItem) object;
+                return getStringKey(o.getCodTipoItem());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Item.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TipoItem.class.getName());
             }
         }
 

@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.PersonalFacade;
+import entities.ItemProveedor;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.ItemProveedorFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("personalController")
+@Named("itemProveedorController")
 @SessionScoped
-public class PersonalController implements Serializable {
+public class ItemProveedorController implements Serializable {
 
-    private Personal current;
+    private ItemProveedor current;
     private DataModel items = null;
     @EJB
-    private beans.PersonalFacade ejbFacade;
+    private beans.ItemProveedorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public PersonalController() {
+    public ItemProveedorController() {
     }
 
-    public Personal getSelected() {
+    public ItemProveedor getSelected() {
         if (current == null) {
-            current = new Personal();
+            current = new ItemProveedor();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private PersonalFacade getFacade() {
+    private ItemProveedorFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class PersonalController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Personal) getItems().getRowData();
+        current = (ItemProveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Personal();
+        current = new ItemProveedor();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class PersonalController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PersonalCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemProveedorCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class PersonalController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Personal) getItems().getRowData();
+        current = (ItemProveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class PersonalController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PersonalUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemProveedorUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class PersonalController implements Serializable {
     }
 
     public String destroy() {
-        current = (Personal) getItems().getRowData();
+        current = (ItemProveedor) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class PersonalController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("PersonalDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemProveedorDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class PersonalController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Personal getPersonal(java.lang.Integer id) {
+    public ItemProveedor getItemProveedor(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Personal.class)
-    public static class PersonalControllerConverter implements Converter {
+    @FacesConverter(forClass = ItemProveedor.class)
+    public static class ItemProveedorControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PersonalController controller = (PersonalController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "personalController");
-            return controller.getPersonal(getKey(value));
+            ItemProveedorController controller = (ItemProveedorController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "itemProveedorController");
+            return controller.getItemProveedor(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class PersonalController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Personal) {
-                Personal o = (Personal) object;
-                return getStringKey(o.getCodPerso());
+            if (object instanceof ItemProveedor) {
+                ItemProveedor o = (ItemProveedor) object;
+                return getStringKey(o.getCodIprove());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Personal.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ItemProveedor.class.getName());
             }
         }
 

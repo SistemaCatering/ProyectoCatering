@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.TipoLugarFacade;
+import entities.Cliente;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.ClienteFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("tipoLugarController")
+@Named("clienteController")
 @SessionScoped
-public class TipoLugarController implements Serializable {
+public class ClienteController implements Serializable {
 
-    private TipoLugar current;
+    private Cliente current;
     private DataModel items = null;
     @EJB
-    private beans.TipoLugarFacade ejbFacade;
+    private beans.ClienteFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public TipoLugarController() {
+    public ClienteController() {
     }
 
-    public TipoLugar getSelected() {
+    public Cliente getSelected() {
         if (current == null) {
-            current = new TipoLugar();
+            current = new Cliente();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private TipoLugarFacade getFacade() {
+    private ClienteFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class TipoLugarController implements Serializable {
     }
 
     public String prepareView() {
-        current = (TipoLugar) getItems().getRowData();
+        current = (Cliente) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new TipoLugar();
+        current = new Cliente();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class TipoLugarController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoLugarCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class TipoLugarController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (TipoLugar) getItems().getRowData();
+        current = (Cliente) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class TipoLugarController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoLugarUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class TipoLugarController implements Serializable {
     }
 
     public String destroy() {
-        current = (TipoLugar) getItems().getRowData();
+        current = (Cliente) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class TipoLugarController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TipoLugarDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ClienteDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class TipoLugarController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public TipoLugar getTipoLugar(java.lang.Integer id) {
+    public Cliente getCliente(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = TipoLugar.class)
-    public static class TipoLugarControllerConverter implements Converter {
+    @FacesConverter(forClass = Cliente.class)
+    public static class ClienteControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TipoLugarController controller = (TipoLugarController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "tipoLugarController");
-            return controller.getTipoLugar(getKey(value));
+            ClienteController controller = (ClienteController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "clienteController");
+            return controller.getCliente(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class TipoLugarController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof TipoLugar) {
-                TipoLugar o = (TipoLugar) object;
-                return getStringKey(o.getCodTl());
+            if (object instanceof Cliente) {
+                Cliente o = (Cliente) object;
+                return getStringKey(o.getCodCli());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TipoLugar.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Cliente.class.getName());
             }
         }
 

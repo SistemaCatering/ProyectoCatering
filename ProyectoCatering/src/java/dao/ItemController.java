@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.EventoFacade;
+import entities.Item;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.ItemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("eventoController")
+@Named("itemController")
 @SessionScoped
-public class EventoController implements Serializable {
+public class ItemController implements Serializable {
 
-    private Evento current;
+    private Item current;
     private DataModel items = null;
     @EJB
-    private beans.EventoFacade ejbFacade;
+    private beans.ItemFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public EventoController() {
+    public ItemController() {
     }
 
-    public Evento getSelected() {
+    public Item getSelected() {
         if (current == null) {
-            current = new Evento();
+            current = new Item();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private EventoFacade getFacade() {
+    private ItemFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class EventoController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Evento) getItems().getRowData();
+        current = (Item) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Evento();
+        current = new Item();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class EventoController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EventoCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class EventoController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Evento) getItems().getRowData();
+        current = (Item) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class EventoController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EventoUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class EventoController implements Serializable {
     }
 
     public String destroy() {
-        current = (Evento) getItems().getRowData();
+        current = (Item) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class EventoController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("EventoDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class EventoController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Evento getEvento(java.lang.Integer id) {
+    public Item getItem(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Evento.class)
-    public static class EventoControllerConverter implements Converter {
+    @FacesConverter(forClass = Item.class)
+    public static class ItemControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EventoController controller = (EventoController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "eventoController");
-            return controller.getEvento(getKey(value));
+            ItemController controller = (ItemController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "itemController");
+            return controller.getItem(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class EventoController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Evento) {
-                Evento o = (Evento) object;
-                return getStringKey(o.getCodEvento());
+            if (object instanceof Item) {
+                Item o = (Item) object;
+                return getStringKey(o.getCodigoItem());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Evento.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Item.class.getName());
             }
         }
 

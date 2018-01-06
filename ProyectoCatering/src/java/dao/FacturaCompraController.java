@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.ParametrosFacade;
+import entities.FacturaCompra;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.FacturaCompraFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("parametrosController")
+@Named("facturaCompraController")
 @SessionScoped
-public class ParametrosController implements Serializable {
+public class FacturaCompraController implements Serializable {
 
-    private Parametros current;
+    private FacturaCompra current;
     private DataModel items = null;
     @EJB
-    private beans.ParametrosFacade ejbFacade;
+    private beans.FacturaCompraFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ParametrosController() {
+    public FacturaCompraController() {
     }
 
-    public Parametros getSelected() {
+    public FacturaCompra getSelected() {
         if (current == null) {
-            current = new Parametros();
+            current = new FacturaCompra();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ParametrosFacade getFacade() {
+    private FacturaCompraFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class ParametrosController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Parametros) getItems().getRowData();
+        current = (FacturaCompra) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Parametros();
+        current = new FacturaCompra();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class ParametrosController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParametrosCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaCompraCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class ParametrosController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Parametros) getItems().getRowData();
+        current = (FacturaCompra) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class ParametrosController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParametrosUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaCompraUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class ParametrosController implements Serializable {
     }
 
     public String destroy() {
-        current = (Parametros) getItems().getRowData();
+        current = (FacturaCompra) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class ParametrosController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ParametrosDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FacturaCompraDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class ParametrosController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Parametros getParametros(java.lang.Integer id) {
+    public FacturaCompra getFacturaCompra(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Parametros.class)
-    public static class ParametrosControllerConverter implements Converter {
+    @FacesConverter(forClass = FacturaCompra.class)
+    public static class FacturaCompraControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ParametrosController controller = (ParametrosController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "parametrosController");
-            return controller.getParametros(getKey(value));
+            FacturaCompraController controller = (FacturaCompraController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "facturaCompraController");
+            return controller.getFacturaCompra(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class ParametrosController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Parametros) {
-                Parametros o = (Parametros) object;
-                return getStringKey(o.getCodPa());
+            if (object instanceof FacturaCompra) {
+                FacturaCompra o = (FacturaCompra) object;
+                return getStringKey(o.getCodFactc());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Parametros.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + FacturaCompra.class.getName());
             }
         }
 

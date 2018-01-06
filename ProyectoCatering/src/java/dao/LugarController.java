@@ -1,8 +1,9 @@
-package entities;
+package dao;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
-import beans.ItemProveedorFacade;
+import entities.Lugar;
+import dao.util.JsfUtil;
+import dao.util.PaginationHelper;
+import beans.LugarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -17,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("itemProveedorController")
+@Named("lugarController")
 @SessionScoped
-public class ItemProveedorController implements Serializable {
+public class LugarController implements Serializable {
 
-    private ItemProveedor current;
+    private Lugar current;
     private DataModel items = null;
     @EJB
-    private beans.ItemProveedorFacade ejbFacade;
+    private beans.LugarFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ItemProveedorController() {
+    public LugarController() {
     }
 
-    public ItemProveedor getSelected() {
+    public Lugar getSelected() {
         if (current == null) {
-            current = new ItemProveedor();
+            current = new Lugar();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ItemProveedorFacade getFacade() {
+    private LugarFacade getFacade() {
         return ejbFacade;
     }
 
@@ -67,13 +68,13 @@ public class ItemProveedorController implements Serializable {
     }
 
     public String prepareView() {
-        current = (ItemProveedor) getItems().getRowData();
+        current = (Lugar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new ItemProveedor();
+        current = new Lugar();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -81,7 +82,7 @@ public class ItemProveedorController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemProveedorCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LugarCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -90,7 +91,7 @@ public class ItemProveedorController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (ItemProveedor) getItems().getRowData();
+        current = (Lugar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -98,7 +99,7 @@ public class ItemProveedorController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemProveedorUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LugarUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -107,7 +108,7 @@ public class ItemProveedorController implements Serializable {
     }
 
     public String destroy() {
-        current = (ItemProveedor) getItems().getRowData();
+        current = (Lugar) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -131,7 +132,7 @@ public class ItemProveedorController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ItemProveedorDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("LugarDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -187,21 +188,21 @@ public class ItemProveedorController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public ItemProveedor getItemProveedor(java.lang.Integer id) {
+    public Lugar getLugar(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = ItemProveedor.class)
-    public static class ItemProveedorControllerConverter implements Converter {
+    @FacesConverter(forClass = Lugar.class)
+    public static class LugarControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ItemProveedorController controller = (ItemProveedorController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "itemProveedorController");
-            return controller.getItemProveedor(getKey(value));
+            LugarController controller = (LugarController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "lugarController");
+            return controller.getLugar(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -221,11 +222,11 @@ public class ItemProveedorController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ItemProveedor) {
-                ItemProveedor o = (ItemProveedor) object;
-                return getStringKey(o.getCodIprove());
+            if (object instanceof Lugar) {
+                Lugar o = (Lugar) object;
+                return getStringKey(o.getCodLugar());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ItemProveedor.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Lugar.class.getName());
             }
         }
 
