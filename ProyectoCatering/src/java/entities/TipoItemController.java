@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.TipoItemFacade;
+import facade.TipoItemFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class TipoItemController implements Serializable {
     private TipoItem current;
     private DataModel items = null;
     @EJB
-    private beans.TipoItemFacade ejbFacade;
+    private facade.TipoItemFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.ClienteFacade;
+import facade.ClienteFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class ClienteController implements Serializable {
     private Cliente current;
     private DataModel items = null;
     @EJB
-    private beans.ClienteFacade ejbFacade;
+    private facade.ClienteFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

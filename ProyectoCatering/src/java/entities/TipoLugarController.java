@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.TipoLugarFacade;
+import facade.TipoLugarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class TipoLugarController implements Serializable {
     private TipoLugar current;
     private DataModel items = null;
     @EJB
-    private beans.TipoLugarFacade ejbFacade;
+    private facade.TipoLugarFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

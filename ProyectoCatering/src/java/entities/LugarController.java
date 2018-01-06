@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.LugarFacade;
+import facade.LugarFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class LugarController implements Serializable {
     private Lugar current;
     private DataModel items = null;
     @EJB
-    private beans.LugarFacade ejbFacade;
+    private facade.LugarFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

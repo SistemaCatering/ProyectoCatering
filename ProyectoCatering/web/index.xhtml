@@ -14,13 +14,6 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="js/cuerpo.js"></script>
-        <script>
-            function redireccionar() {
-                var pagina = "registro.xhtml";
-                location.href = pagina;
-            }
-            );
-        </script>
     </h:head>
     <h:body>
         <h:form>
@@ -53,7 +46,7 @@
                         </div>
                     </li>
                     <li>
-                        <h:commandLink class="a"><!-- href="galeria.xhtml"-->
+                        <h:commandLink class="a" action="#{navegacionBean.paginaGaleria()}">
                             <img src="images/3.jpg" alt=""/>
                             <span class="sdt_active"></span>
                             <span class="sdt_wrap">
@@ -73,7 +66,8 @@
                         </h:commandLink>
                     </li>
                     <li>
-                        <h:commandLink class="a" action="#{usuarioBean.pagina()}">
+
+                        <h:commandLink class="a" action="#{navegacionBean.paginaRegistro()}">
                             <img src="images/5.jpg" alt=""/>
                             <span class="sdt_active"></span>
                             <span class="sdt_wrap">
@@ -101,13 +95,7 @@
                 </ul>
             </div>
         </h:form>
-        <div>
-            <span class="reference">
-                <a href="http://tympanus.net/codrops/2010/07/16/slide-down-box-menu/">back to the Codrops Tutorial</a>
-                <a href="http://www.flickr.com/photos/arcticpuppy/sets/72157622090180990/">Images by tibchris</a>
-            </span>
-        </div>
-        <div>
+        <!--<div>
             <br />
             <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
             <br />
@@ -136,7 +124,7 @@
             <h:link outcome="/tipoItem/List" value="Show All TipoItem Items"/>
             <br />
             <h:link outcome="/tipoLugar/List" value="Show All TipoLugar Items"/>
-        </div>
+        </div>-->
     </h:body>
 </html>
 

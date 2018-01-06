@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.EventoFacade;
+import facade.EventoFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class EventoController implements Serializable {
     private Evento current;
     private DataModel items = null;
     @EJB
-    private beans.EventoFacade ejbFacade;
+    private facade.EventoFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

@@ -9,4 +9,35 @@
             <var>bundle</var>
         </resource-bundle>
     </application>
+    <managed-bean>
+        <managed-bean-name>usuarioBean</managed-bean-name>
+        <managed-bean-class>beans.UsuarioBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>navegacionBean</managed-bean-name>
+        <managed-bean-class>beans.NavegacionBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>registro</from-outcome>
+            <to-view-id>registro.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>galeria</from-outcome>
+            <to-view-id>galeria.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>registro.xhtml</from-view-id><!--desde aqui se van a las otras para las reglas de navegaciuon-->
+        <navigation-case>
+            <from-outcome>ir.pagina.admin</from-outcome>
+            <to-view-id>administrador/admin.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

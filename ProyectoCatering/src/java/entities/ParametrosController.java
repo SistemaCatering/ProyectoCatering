@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.ParametrosFacade;
+import facade.ParametrosFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class ParametrosController implements Serializable {
     private Parametros current;
     private DataModel items = null;
     @EJB
-    private beans.ParametrosFacade ejbFacade;
+    private facade.ParametrosFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

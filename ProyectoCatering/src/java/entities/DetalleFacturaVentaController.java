@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.DetalleFacturaVentaFacade;
+import facade.DetalleFacturaVentaFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class DetalleFacturaVentaController implements Serializable {
     private DetalleFacturaVenta current;
     private DataModel items = null;
     @EJB
-    private beans.DetalleFacturaVentaFacade ejbFacade;
+    private facade.DetalleFacturaVentaFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

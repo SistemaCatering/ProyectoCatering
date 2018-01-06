@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.ProveedorFacade;
+import facade.ProveedorFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class ProveedorController implements Serializable {
     private Proveedor current;
     private DataModel items = null;
     @EJB
-    private beans.ProveedorFacade ejbFacade;
+    private facade.ProveedorFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

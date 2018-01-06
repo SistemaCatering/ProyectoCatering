@@ -2,7 +2,7 @@ package entities;
 
 import entities.util.JsfUtil;
 import entities.util.PaginationHelper;
-import beans.PersonalFacade;
+import facade.PersonalFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -24,7 +24,7 @@ public class PersonalController implements Serializable {
     private Personal current;
     private DataModel items = null;
     @EJB
-    private beans.PersonalFacade ejbFacade;
+    private facade.PersonalFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
