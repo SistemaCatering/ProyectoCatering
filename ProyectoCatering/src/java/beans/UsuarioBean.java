@@ -4,7 +4,7 @@
  */
 package beans;
 
-import dao.UsuarioFacadeLocal;
+import facade.UsuarioFacadeLocal;
 import entities.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
