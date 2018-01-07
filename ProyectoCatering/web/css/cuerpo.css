@@ -13,6 +13,9 @@ body{
     font-family:Arial;
 }
 
+outputText{
+    color: #ffffff;
+}
 span.reference{
     position:fixed;
     left:10px;

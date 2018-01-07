@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package facade;
 
 import entities.Evento;
 import java.util.List;

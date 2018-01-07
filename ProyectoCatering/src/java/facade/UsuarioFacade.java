@@ -1,22 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package facade;
 
-import entities.FacturaCompra;
+import entities.Usuario;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author eduardo
+ * @author Geovanny
  */
 @Stateless
-public class FacturaCompraFacade extends AbstractFacade<FacturaCompra> {
-
+public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
     @PersistenceContext(unitName = "ProyectoCateringPU")
     private EntityManager em;
 
@@ -25,8 +23,8 @@ public class FacturaCompraFacade extends AbstractFacade<FacturaCompra> {
         return em;
     }
 
-    public FacturaCompraFacade() {
-        super(FacturaCompra.class);
+    public UsuarioFacade() {
+        super(Usuario.class);
     }
     
 }

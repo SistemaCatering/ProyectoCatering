@@ -4,46 +4,67 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Pagina de Administracion</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <h:outputStylesheet name="css/jsfcrud.css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="description" content="Slide Down Box Menu with jQuery and CSS3" />
         <meta name="keywords" content="jquery, css3, sliding, box, menu, cube, navigation, portfolio, thumbnails"/>
         <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen"/>
         <link rel="stylesheet" href="css/cuerpo.css" type="text/css" media="all"/>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="js/cuerpo.js"></script>
     </h:head>
     <h:body>
-        <div>
-            <br />
-            <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
-            <br />
-            <h:link outcome="/detalleFacturaCompra/List" value="Show All DetalleFacturaCompra Items"/>
-            <br />
-            <h:link outcome="/detalleFacturaVenta/List" value="Show All DetalleFacturaVenta Items"/>
-            <br />
-            <h:link outcome="/evento/List" value="Show All Evento Items"/>
-            <br />
-            <h:link outcome="/facturaCompra/List" value="Show All FacturaCompra Items"/>
-            <br />
-            <h:link outcome="/facturaVenta/List" value="Show All FacturaVenta Items"/>
-            <br />
-            <h:link outcome="/item/List" value="Show All Item Items"/>
-            <br />
-            <h:link outcome="/itemProveedor/List" value="Show All ItemProveedor Items"/>
-            <br />
-            <h:link outcome="/lugar/List" value="Show All Lugar Items"/>
-            <br />
-            <h:link outcome="/parametros/List" value="Show All Parametros Items"/>
-            <br />
-            <h:link outcome="/personal/List" value="Show All Personal Items"/>
-            <br />
-            <h:link outcome="/proveedor/List" value="Show All Proveedor Items"/>
-            <br />
-            <h:link outcome="/tipoItem/List" value="Show All TipoItem Items"/>
-            <br />
-            <h:link outcome="/tipoLugar/List" value="Show All TipoLugar Items"/>
-        </div>
+        <h:form>
+            <div class="content">
+                <h1 class="title">Organiz logo</h1>
+                <ul id="sdt_menu" class="sdt_menu">
+                    <li>
+                        <h:commandLink class="a" > <!--href="#"-->
+                            <img src="../administrador/images/productos.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Productos</span>
+                                <span class="sdt_descr">Facturas y proveedores</span>
+                            </span>
+                        </h:commandLink>
+                        <div class="sdt_box">
+                            <h:commandLink class="a"> <!--href="servicios.xhtml"-->Factura Compras</h:commandLink>
+                            <h:commandLink class="a"><!-- href="#"-->Factura Ventas</h:commandLink>
+                            <h:commandLink class="a" action="#{navegacionBean.listarProvedores()}"><!-- href="#"-->Proveedores</h:commandLink>
+                            <h:commandLink class="a" action="#{navegacionBean.listarItems()}"><!-- href="#"-->Items</h:commandLink>
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <h:commandLink class="a" action="#}">
+                            <img src="../administrador/images/eventos.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Eventos</span>
+                                <span class="sdt_descr">Servicios y registros</span>
+                            </span>
+                        </h:commandLink>
+                         <div class="sdt_box">
+                            <h:commandLink class="a" action="#{navegacionBean.listarEventos()}"> <!--href="servicios.xhtml"-->Eventos</h:commandLink>
+                            <h:commandLink class="a" action="#{navegacionBean.listarLugares()}"><!-- href="#"-->Lugares</h:commandLink>
+                            <h:commandLink class="a" action="#{navegacionBean.listarParametros()}"><!-- href="#"-->Parámetros</h:commandLink>
+                        </div>
+                    </li>
+                    <li>
+                        <h:commandLink class="a" action="#{navegacionBean.listarClientes()}"> <!-- href="quienessomos.xhtml"-->
+                            <img src="../administrador/images/clientes.jpg" alt=""/>
+                            <span class="sdt_active"></span>
+                            <span class="sdt_wrap">
+                                <span class="sdt_link">Clientes</span>
+                                <span class="sdt_descr">Nuestros Clientes</span>
+                            </span>
+                        </h:commandLink>
+                    </li>
+                </ul>
+            </div>
+        </h:form>
     </h:body>
 </html>
 

@@ -23,4 +23,28 @@ public class NavegacionBean {
     public String paginaGaleria() {
         return "galeria";
     }
+
+    public String listarProvedores() {
+        return "/proveedor/List";
+    }
+
+    public String listarItems() {
+        return "/item/List";
+    }
+
+    public String listarEventos() {
+        return "/evento/List";
+    }
+
+    public String listarLugares() {
+        return "/lugar/List";
+    }
+
+    public String listarParametros() {
+        return "/parametros/List";
+    }
+
+    public String listarClientes() {
+        return "/cliente/List";
+    }
 }

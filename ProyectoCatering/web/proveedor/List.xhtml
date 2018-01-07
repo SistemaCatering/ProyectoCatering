@@ -4,10 +4,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+    <h:head>
+        
+    </h:head>
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListProveedorTitle}"></h:outputText>
+            <!--<h:outputText value="#{bundle.ListProveedorTitle}"></h:outputText>-->
+            <h:outputText class="salida" value="Listado de proveedores"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
@@ -21,61 +24,61 @@
                     <h:commandLink action="#{proveedorController.next}" value="#{bundle.Next} #{proveedorController.pagination.pageSize}" rendered="#{proveedorController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{proveedorController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_codProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.codProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_rucProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.rucProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_nombreProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_direccionProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.direccionProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_telefonoCasaProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.telefonoCasaProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_telefonoCelularProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.telefonoCelularProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_contactoProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.contactoProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_sectorProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.sectorProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_correoProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.correoProve}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet class="atrib" name="header">
                                 <h:outputText value="#{bundle.ListProveedorTitle_transporteProve}"/>
                             </f:facet>
                             <h:outputText value="#{item.transporteProve}"/>
