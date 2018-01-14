@@ -30,10 +30,11 @@
                     <h:outputLabel value="#{bundle.EditLugarLabel_codTl}" for="codTl" />
                     <h:inputText id="codTl" value="#{lugarController.selected.codTl}" title="#{bundle.EditLugarTitle_codTl}" required="true" requiredMessage="#{bundle.EditLugarRequiredMessage_codTl}"/>
                 </h:panelGrid>
+                <br />
                 <h:commandLink action="#{lugarController.update}" value="#{bundle.EditLugarSaveLink}"/>
-                <br />
-                <br />
+                &nbsp;&nbsp;&nbsp;
                 <h:link outcome="View" value="#{bundle.EditLugarViewLink}"/>
+                <br />
                 <br />
                 <h:commandLink action="#{lugarController.prepareList}" value="#{bundle.EditLugarShowAllLink}" immediate="true"/>
                 <br />

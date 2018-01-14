@@ -36,10 +36,11 @@
                     <h:outputLabel value="#{bundle.EditProveedorLabel_transporteProve}" for="transporteProve" />
                     <h:inputText id="transporteProve" value="#{proveedorController.selected.transporteProve}" title="#{bundle.EditProveedorTitle_transporteProve}" />
                 </h:panelGrid>
+                <br />
                 <h:commandLink action="#{proveedorController.update}" value="#{bundle.EditProveedorSaveLink}"/>
-                <br />
-                <br />
+                &nbsp;&nbsp;&nbsp;
                 <h:link outcome="View" value="#{bundle.EditProveedorViewLink}"/>
+                <br />
                 <br />
                 <h:commandLink action="#{proveedorController.prepareList}" value="#{bundle.EditProveedorShowAllLink}" immediate="true"/>
                 <br />

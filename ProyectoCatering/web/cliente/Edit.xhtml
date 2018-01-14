@@ -30,10 +30,11 @@
                     <h:outputLabel value="#{bundle.EditClienteLabel_emailCli}" for="emailCli" />
                     <h:inputText id="emailCli" value="#{clienteController.selected.emailCli}" title="#{bundle.EditClienteTitle_emailCli}" />
                 </h:panelGrid>
+                <br />
                 <h:commandLink action="#{clienteController.update}" value="#{bundle.EditClienteSaveLink}"/>
-                <br />
-                <br />
+                &nbsp;&nbsp;&nbsp;
                 <h:link outcome="View" value="#{bundle.EditClienteViewLink}"/>
+                <br />
                 <br />
                 <h:commandLink action="#{clienteController.prepareList}" value="#{bundle.EditClienteShowAllLink}" immediate="true"/>
                 <br />

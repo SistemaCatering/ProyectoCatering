@@ -30,10 +30,11 @@
                     <h:outputLabel value="#{bundle.EditItemLabel_valorItem}" for="valorItem" />
                     <h:inputText id="valorItem" value="#{itemController.selected.valorItem}" title="#{bundle.EditItemTitle_valorItem}" />
                 </h:panelGrid>
+                <br />
                 <h:commandLink action="#{itemController.update}" value="#{bundle.EditItemSaveLink}"/>
-                <br />
-                <br />
+                &nbsp;&nbsp;&nbsp;
                 <h:link outcome="View" value="#{bundle.EditItemViewLink}"/>
+                <br />
                 <br />
                 <h:commandLink action="#{itemController.prepareList}" value="#{bundle.EditItemShowAllLink}" immediate="true"/>
                 <br />
