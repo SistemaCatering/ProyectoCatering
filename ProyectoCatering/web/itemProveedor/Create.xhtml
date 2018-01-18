@@ -25,13 +25,15 @@
                     <h:inputText id="codTipoItem" value="#{itemProveedorController.selected.codTipoItem}" title="#{bundle.CreateItemProveedorTitle_codTipoItem}" required="true" requiredMessage="#{bundle.CreateItemProveedorRequiredMessage_codTipoItem}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{itemProveedorController.create}" value="#{bundle.CreateItemProveedorSaveLink}" />
+                <h:commandLink action="#{itemProveedorController.create}" value="#{bundle.CreateItemProveedorSaveLink}" >-->
+                </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{itemProveedorController.prepareList}" value="#{bundle.CreateItemProveedorShowAllLink}" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateItemProveedorIndexLink}"/>
+                <h:link  outcome="/index" value="#{bundle.ListItemProveedorIndexLink}">
+                   </h:link>
             </h:form>
         </ui:define>
     </ui:composition>

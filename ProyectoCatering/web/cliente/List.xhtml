@@ -14,11 +14,21 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
+                <div align="right" style="width:96% ">
+                    <h:commandLink action="#{clienteController.prepareCreate}">
+                        <h:graphicImage value="../images/icons/add24.png" title="Crear nuevo registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="/index">
+                        <h:graphicImage value="../images/icons/home24.png" title="Ir a pàgina principal"/>
+                    </h:link>
+                </div>
                 <h:outputText escape="false" value="#{bundle.ListClienteEmpty}" rendered="#{clienteController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{clienteController.items.rowCount > 0}">
                     <h:outputText value="#{clienteController.pagination.pageFirstItem + 1}..#{clienteController.pagination.pageLastItem + 1}/#{clienteController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{clienteController.previous}" value="#{bundle.Previous} #{clienteController.pagination.pageSize}" rendered="#{clienteController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{clienteController.next}" value="#{bundle.Next} #{clienteController.pagination.pageSize}" rendered="#{clienteController.pagination.hasNextPage}"/>&nbsp;
+
                     <h:dataTable value="#{clienteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
@@ -66,19 +76,20 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{clienteController.prepareView}" value="#{bundle.ListClienteViewLink}"/>
+                            <h:commandLink action="#{clienteController.prepareView}">
+                                <h:graphicImage value="../images/icons/search24.png"/>
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{clienteController.prepareEdit}" value="#{bundle.ListClienteEditLink}"/>
+                            <h:commandLink action="#{clienteController.prepareEdit}">
+                                <h:graphicImage value="../images/icons/edit24.png"/>
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{clienteController.destroy}" value="#{bundle.ListClienteDestroyLink}"/>
+                            <h:commandLink action="#{clienteController.destroy}">
+                                <h:graphicImage value="../images/icons/del24.png"/>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{clienteController.prepareCreate}" value="#{bundle.ListClienteCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListClienteIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

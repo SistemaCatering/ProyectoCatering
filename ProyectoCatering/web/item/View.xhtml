@@ -7,14 +7,39 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewItemTitle}"></h:outputText>
+<!--            <h:outputText value="#{bundle.ViewItemTitle}"></h:outputText>-->
+            <h:outputText class="salida" value="Información Item"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
+            <h:form class="formulario">
+                <div align="center" style="width:96% ">
+                    &nbsp;&nbsp;
+                    <h:commandLink action="#{itemController.prepareList}">
+                        <h:graphicImage value="../images/icons/all24.png" title="Mostrar al listado de registros"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:commandLink action="#{itemController.prepareCreate}">
+                        <h:graphicImage value="../images/icons/add24.png" title="Agregar nuevo registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="Edit">
+                        <h:graphicImage value="../images/icons/edit24.png" title="Editar el registro"/>
+                    </h:link>
+                    &nbsp;&nbsp;
+                    <h:commandLink action="#{itemController.destroyAndView}">
+                        <h:graphicImage value="../images/icons/del24.png" title="Eliminar registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="/index">
+                        <h:graphicImage value="../images/icons/home24.png" title="Ir a pàgina principal"/>
+                    </h:link>
+                    <br/>
+                    <br/>
+                </div>
+                <h:panelGrid columns="2" styleClass="centered-form">
                     <h:outputText value="#{bundle.ViewItemLabel_codigoItem}"/>
                     <h:outputText value="#{itemController.selected.codigoItem}" title="#{bundle.ViewItemTitle_codigoItem}"/>
                     <h:outputText value="#{bundle.ViewItemLabel_descripcionItem}"/>
@@ -30,19 +55,6 @@
                     <h:outputText value="#{bundle.ViewItemLabel_valorItem}"/>
                     <h:outputText value="#{itemController.selected.valorItem}" title="#{bundle.ViewItemTitle_valorItem}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{itemController.destroyAndView}" value="#{bundle.ViewItemDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewItemEditLink}"/>
-                <br />
-                <h:commandLink action="#{itemController.prepareCreate}" value="#{bundle.ViewItemCreateLink}" />
-                <br />
-                <h:commandLink action="#{itemController.prepareList}" value="#{bundle.ViewItemShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewItemIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>

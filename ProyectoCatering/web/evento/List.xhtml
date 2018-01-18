@@ -14,11 +14,21 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
+                <div align="right" style="width:96% ">
+                    <h:commandLink action="#{eventoController.prepareCreate}">
+                        <h:graphicImage value="../images/icons/add24.png" title="Crear nuevo registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="/index">
+                        <h:graphicImage value="../images/icons/home24.png" title="Ir a pàgina principal"/>
+                    </h:link>
+                </div>
                 <h:outputText escape="false" value="#{bundle.ListEventoEmpty}" rendered="#{eventoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{eventoController.items.rowCount > 0}">
                     <h:outputText value="#{eventoController.pagination.pageFirstItem + 1}..#{eventoController.pagination.pageLastItem + 1}/#{eventoController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{eventoController.previous}" value="#{bundle.Previous} #{eventoController.pagination.pageSize}" rendered="#{eventoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{eventoController.next}" value="#{bundle.Next} #{eventoController.pagination.pageSize}" rendered="#{eventoController.pagination.hasNextPage}"/>&nbsp;
+
                     <h:dataTable value="#{eventoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
@@ -58,19 +68,22 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{eventoController.prepareView}" value="#{bundle.ListEventoViewLink}"/>
+                            <h:commandLink action="#{eventoController.prepareView}">
+                                <h:graphicImage value="../images/icons/search24.png"/>
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{eventoController.prepareEdit}" value="#{bundle.ListEventoEditLink}"/>
+                            <h:commandLink action="#{eventoController.prepareEdit}">
+                                <h:graphicImage value="../images/icons/edit24.png"/>
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{eventoController.destroy}" value="#{bundle.ListEventoDestroyLink}"/>
+                            <h:commandLink action="#{eventoController.destroy}">
+                                <h:graphicImage value="../images/icons/del24.png"/>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{eventoController.prepareCreate}" value="#{bundle.ListEventoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListEventoIndexLink}"/>
+
             </h:form>
         </ui:define>
     </ui:composition>

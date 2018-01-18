@@ -7,32 +7,44 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewTipoLugarTitle}"></h:outputText>
+<!--            <h:outputText value="#{bundle.ViewTipoLugarTitle}"></h:outputText>-->
+            <h:outputText class="salida" value="Información Tipo-Lugar"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
+            <h:form class="formulario">
+                <div align="center" style="width:96% ">
+                    &nbsp;&nbsp;
+                    <h:commandLink action="#{tipoLugarController.prepareList}">
+                        <h:graphicImage value="../images/icons/all24.png" title="Mostrar al listado de registros"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:commandLink action="#{tipoLugarController.prepareCreate}">
+                        <h:graphicImage value="../images/icons/add24.png" title="Agregar nuevo registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="Edit">
+                        <h:graphicImage value="../images/icons/edit24.png" title="Editar el registro"/>
+                    </h:link>
+                    &nbsp;&nbsp;
+                    <h:commandLink action="#{tipoLugarController.destroyAndView}">
+                        <h:graphicImage value="../images/icons/del24.png" title="Eliminar registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="/index">
+                        <h:graphicImage value="../images/icons/home24.png" title="Ir a pàgina principal"/>
+                    </h:link>
+                    <br/>
+                    <br/>
+                </div>
+                <h:panelGrid columns="2" styleClass="centered-form">
                     <h:outputText value="#{bundle.ViewTipoLugarLabel_codTl}"/>
                     <h:outputText value="#{tipoLugarController.selected.codTl}" title="#{bundle.ViewTipoLugarTitle_codTl}"/>
                     <h:outputText value="#{bundle.ViewTipoLugarLabel_nombreTl}"/>
                     <h:outputText value="#{tipoLugarController.selected.nombreTl}" title="#{bundle.ViewTipoLugarTitle_nombreTl}"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{tipoLugarController.destroyAndView}" value="#{bundle.ViewTipoLugarDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTipoLugarEditLink}"/>
-                <br />
-                <h:commandLink action="#{tipoLugarController.prepareCreate}" value="#{bundle.ViewTipoLugarCreateLink}" />
-                <br />
-                <h:commandLink action="#{tipoLugarController.prepareList}" value="#{bundle.ViewTipoLugarShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTipoLugarIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>

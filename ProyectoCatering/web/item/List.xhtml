@@ -14,6 +14,15 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
+                <div align="right" style="width:96% ">
+                    <h:commandLink action="#{itemController.prepareCreate}">
+                        <h:graphicImage value="../images/icons/add24.png" title="Crear nuevo registro"/>
+                    </h:commandLink>
+                    &nbsp;&nbsp;
+                    <h:link outcome="/index">
+                        <h:graphicImage value="../images/icons/home24.png" title="Ir a pàgina principal"/>
+                    </h:link>
+                </div>
                 <h:outputText escape="false" value="#{bundle.ListItemEmpty}" rendered="#{itemController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{itemController.items.rowCount > 0}">
                     <h:outputText value="#{itemController.pagination.pageFirstItem + 1}..#{itemController.pagination.pageLastItem + 1}/#{itemController.pagination.itemsCount}"/>&nbsp;
@@ -66,19 +75,21 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{itemController.prepareView}" value="#{bundle.ListItemViewLink}"/>
+                            <h:commandLink action="#{itemController.prepareView}">
+                                <h:graphicImage value="../images/icons/search24.png"/>
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{itemController.prepareEdit}" value="#{bundle.ListItemEditLink}"/>
+                            <h:commandLink action="#{itemController.prepareEdit}">
+                                <h:graphicImage value="../images/icons/edit24.png"/>
+                            </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{itemController.destroy}" value="#{bundle.ListItemDestroyLink}"/>
+                            <h:commandLink action="#{itemController.destroy}">
+                                <h:graphicImage value="../images/icons/del24.png"/>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{itemController.prepareCreate}" value="#{bundle.ListItemCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListItemIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
