@@ -20,6 +20,10 @@ public class NavegacionBean {
         return "registro";
     }
 
+    public String paginaAdmin() {
+        return "ir.pagina.admin";
+    }
+
     public String paginaGaleria() {
         return "galeria";
     }
@@ -46,5 +50,9 @@ public class NavegacionBean {
 
     public String listarClientes() {
         return "/cliente/List";
+    }
+
+    public String facturaVenta() {
+        return "ir.factura.venta";
     }
 }

@@ -21,7 +21,7 @@
                 <h1 class="title">Organiz logo</h1>
                 <ul id="sdt_menu" class="sdt_menu">
                     <li>
-                        <h:commandLink class="a" > <!--href="#"-->
+                        <h:commandLink class="a" action="#{navegacionBean.paginaAdmin()}"> <!--href="#"-->
                             <img src="../administrador/images/productos.jpg" alt=""/>
                             <span class="sdt_active"></span>
                             <span class="sdt_wrap">
@@ -30,7 +30,7 @@
                             </span>
                         </h:commandLink>
                         <div class="sdt_box">
-                            <h:commandLink class="a"> <!--href="servicios.xhtml"-->Factura Compras</h:commandLink>
+                            <h:commandLink class="a" action="#{navegacionBean.facturaVenta()}"> <!--href="servicios.xhtml"-->Factura Compras</h:commandLink>
                             <h:commandLink class="a"><!-- href="#"-->Factura Ventas</h:commandLink>
                             <h:commandLink class="a" action="#{navegacionBean.listarProvedores()}"><!-- href="#"-->Proveedores</h:commandLink>
                             <h:commandLink class="a" action="#{navegacionBean.listarItems()}"><!-- href="#"-->Items</h:commandLink>
@@ -38,7 +38,7 @@
                         </div>
                     </li>
                     <li>
-                        <h:commandLink class="a" action="#}">
+                        <h:commandLink class="a" action="ir.pagina.admin">
                             <img src="../administrador/images/eventos.jpg" alt=""/>
                             <span class="sdt_active"></span>
                             <span class="sdt_wrap">

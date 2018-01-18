@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Proforma</title>
+        <style>
+            th {
+                text-align: left;
+            }
+            .cabecera{
+                border: #6666ff;
+                background: none;
+            }
+            .cabecera1{  
+                border: #6666ff;
+                height: 12px;
+                width:50px;
+                background: #3A4F54;
+            }
+
+            .order-table{   
+                border-collapse:separate;
+                border: 1px solid black;
+
+            }
+            .order-table-header{
+                background:none repeat scroll 0 0 #3A4F54; 
+                border-bottom:0px solid #ccffff;
+                padding:8px;
+            }
+
+            .order-table-odd-row{
+                text-align:left;
+                background:none repeat scroll 0 0;
+                border-top:100px solid #BBBBBB;
+            }
+
+            .columnaNumero {
+                text-align: left;
+                float:left;
+                height: 12px;
+                width:50px;
+            }
+
+            .clase1 {
+                border: #6666ff;
+                text-align: left;
+                color: #6666ff;
+            }
+
+            .botones{
+                background: #3A4F54;
+            }
+        </style>
+    </h:head>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Ingreso de una nueva Factura"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h3>Digite solo el numero de la factura, RUC de la empresa, Cedula del cliente y codigo del evento</h3>
+                <table>
+                    <div>
+                        <tr>
+                            <td colspan="3">N°
+                                <h:inputText class="cabecera1" value="#{facturaBean.factVenta.codFactv}">
+                                </h:inputText>
+                            </td>
+                            <td>Fecha:
+                                <h:inputText class="cabecera" pt:placeHolder="dd/MM/yyyy" value="#{facturaBean.factVenta.fechaFactv}">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RUC:
+                                <h:inputText class="cabecera1" value="#{facturaBean.parametro.rucPa}">
+                                </h:inputText>
+                            </td>
+                            <td colspan="2">Empresa:      
+                                <h:inputText class="cabecera" value="#{facturaBean.parametro.nombreEmpresaPa}">
+                                </h:inputText>
+                            </td>
+
+                            <td>Telefono:
+                                <h:inputText class="cabecera" value="#{facturaBean.parametro.telefonoPa}">
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Direccion:
+                                <h:inputText class="cabecera" value="#{facturaBean.parametro.direccionPa}">
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CI/RUC:                           
+                                <h:inputText class="cabecera1" value="#{facturaBean.cliente.cedulaCli}">
+                                </h:inputText>
+                            </td>
+                            <td colspan="2">Cliente:                           
+                                <h:inputText class="cabecera" value="#{facturaBean.cliente.nombreCli}">
+                                </h:inputText>
+                            </td>
+                            <td>Telefono:                       
+                                <h:inputText class="cabecera" value="#{facturaBean.cliente.telefonoCli}">
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Direccion del cliente:
+                                <h:inputText class="cabecera" value="#{facturaBean.cliente.direccionCli}">
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Vendedor encargado:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Codigo de evento:
+                                <h:inputText class="cabecera1" value="#{facturaBean.evento.codEvento}">
+                                </h:inputText>
+                            </td>
+                            <td colspan="3">Evento:
+                                <h:inputText class="cabecera" value="#{facturaBean.evento.motivoEvento}">
+                                </h:inputText>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <h:commandButton class="botones" value="Llenar" action="#{facturaBean.llenarDatos()}"/>
+                            </td>
+                        </tr>
+                    </div>
+                </table>
+            </h:form>
+            <h:form>
+                <h:dataTable 
+                    value="#{facturaDetalleVBean.factDetalles}" var="item"
+                    styleClass="order-table"
+                    columnClasses="none,none,columnaNumero"
+                    headerClass="order-table-header"
+                    rowClasses="order-table-odd-row" style="width:250px;">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText class="clase1" value=" Codigo ">
+                            </h:outputText>                            
+                        </f:facet>
+                        <h:outputText  value="#{item.codigo}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText class="clase1" value="     Item     ">
+                            </h:outputText>                            
+                        </f:facet>
+                        <h:outputText value="#{item.nombreItem}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText class="clase1"  value=" Precio ">
+                            </h:outputText>                            
+                        </f:facet>
+                        <h:outputText  value="#{item.precio}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText class="clase1" value=" Cantidad ">
+                            </h:outputText>                            
+                        </f:facet>
+                        <h:outputText value="#{item.cantidad}">
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText class="clase1" value=" Total ">
+                            </h:outputText>                            
+                        </f:facet>
+                        <h:outputText  value="#{item.total}"></h:outputText>
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h:commandButton class="botones" value="Nuevo" action="#{facturaDetalleVBean.nuevoDetaFactV()}"/>
+                <br/>
+                <br/>
+                <h:commandButton class="botones" value="Guardar"/>
+                &nbsp;&nbsp;
+                <h:commandButton class="botones" value="Pagina Inicial" action="/administrador/admin.xhtml"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

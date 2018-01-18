@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Usuario.findByTelefonoUsu", query = "SELECT u FROM Usuario u WHERE u.telefonoUsu = :telefonoUsu"),
     @NamedQuery(name = "Usuario.findByCelularUsu", query = "SELECT u FROM Usuario u WHERE u.celularUsu = :celularUsu"),
     @NamedQuery(name = "Usuario.findByEmailUsu", query = "SELECT u FROM Usuario u WHERE u.emailUsu = :emailUsu"),
-    @NamedQuery(name = "Usuario.findByContrasenaUsu", query = "SELECT u FROM Usuario u WHERE u.contrasenaUsu = :contrasenaUsu")})
+    @NamedQuery(name = "Usuario.findByContrasenaUsu", query = "SELECT u FROM Usuario u WHERE u.contrasenaUsu = :contrasenaUsu"),
+    @NamedQuery(name = "Usuario.findByTipoUsu", query = "SELECT u FROM Usuario u WHERE u.tipoUsu = :tipoUsu")})
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,6 +63,9 @@ public class Usuario implements Serializable {
     @Size(max = 70)
     @Column(name = "contrasena_usu")
     private String contrasenaUsu;
+    @Size(max = 20)
+    @Column(name = "tipo_usu")
+    private String tipoUsu;
 
     public Usuario() {
     }
@@ -132,6 +136,14 @@ public class Usuario implements Serializable {
 
     public void setContrasenaUsu(String contrasenaUsu) {
         this.contrasenaUsu = contrasenaUsu;
+    }
+
+    public String getTipoUsu() {
+        return tipoUsu;
+    }
+
+    public void setTipoUsu(String tipoUsu) {
+        this.tipoUsu = tipoUsu;
     }
 
     @Override

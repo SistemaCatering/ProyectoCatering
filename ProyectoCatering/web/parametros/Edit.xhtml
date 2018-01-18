@@ -30,10 +30,11 @@
                     <h:outputLabel value="#{bundle.EditParametrosLabel_pathLogoPa}" for="pathLogoPa" />
                     <h:inputText id="pathLogoPa" value="#{parametrosController.selected.pathLogoPa}" title="#{bundle.EditParametrosTitle_pathLogoPa}" />
                 </h:panelGrid>
+                <br />
                 <h:commandLink action="#{parametrosController.update}" value="#{bundle.EditParametrosSaveLink}"/>
-                <br />
-                <br />
+                &nbsp;&nbsp;&nbsp;
                 <h:link outcome="View" value="#{bundle.EditParametrosViewLink}"/>
+                <br />
                 <br />
                 <h:commandLink action="#{parametrosController.prepareList}" value="#{bundle.EditParametrosShowAllLink}" immediate="true"/>
                 <br />

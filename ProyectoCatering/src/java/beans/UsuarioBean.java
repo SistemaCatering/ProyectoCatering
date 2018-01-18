@@ -8,23 +8,45 @@ import facade.UsuarioFacadeLocal;
 import entities.Usuario;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.model.SelectItem;
 
 /**
  *
  * @author Geovanny
  */
+class CompararTipoUsuario implements Comparator<SelectItem> {
+
+    @Override
+    public int compare(SelectItem o1, SelectItem o2) {
+        return o1.getValue().toString().compareTo(o2.getValue().toString());
+    }
+}
+
 public class UsuarioBean implements Serializable {
 
     @EJB
     UsuarioFacadeLocal usuarioCtrl;
+    private List<SelectItem> tipoUsuario;
     private Usuario usuario;
     private List<Usuario> usuarios;
 
     public UsuarioBean() {
+        tipoUsuario = new ArrayList();
+        tipoUsuario.add(new SelectItem("Administrador", "Administrador"));
+        tipoUsuario.add(new SelectItem("Comun", "Comun"));
         usuario = new Usuario();
         usuarios = new ArrayList();
+    }
+
+    public List<SelectItem> getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(List<SelectItem> tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     public Usuario getUsuario() {
@@ -76,7 +98,13 @@ public class UsuarioBean implements Serializable {
         usuarios = usuarioCtrl.findAll();
         for (Usuario usuario1 : usuarios) {
             if (usuario1.getEmailUsu().equals(usuario.getEmailUsu()) && usuario1.getContrasenaUsu().equals(usuario.getContrasenaUsu())) {
-                return "ir.pagina.admin";
+                if (usuario1.getTipoUsu().equals("Administrador")) {
+
+                    return "ir.pagina.admin";
+                } else if (usuario1.getTipoUsu().equals("Comun")) {
+
+                    return "ir.pagina.comun";
+                }
             }
         }
         usuario = new Usuario();
