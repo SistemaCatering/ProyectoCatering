@@ -28,5 +28,4 @@ public class ParametrosFacade extends AbstractFacade<Parametros> {
     public ParametrosFacade() {
         super(Parametros.class);
     }
-    
 }

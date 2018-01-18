@@ -19,6 +19,11 @@
         <managed-bean-class>beans.NavegacionBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>facturaBean</managed-bean-name>
+        <managed-bean-class>beans.FacturaBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <navigation-rule>
         <from-view-id>index.xhtml</from-view-id>
         <navigation-case>
@@ -80,6 +85,32 @@
         <navigation-case>
             <from-outcome>ir.pagina.admin</from-outcome>
             <to-view-id>faces/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>facturaDetalleVBean</managed-bean-name>
+        <managed-bean-class>beans.FacturaDetalleVBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>proformafacturav.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ir.nuevo.detalle</from-outcome>
+            <to-view-id>detallefacturav.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>detallefacturav.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ir.nuevo.factura.detalle</from-outcome>
+            <to-view-id>proformafacturav.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/administrador/admin.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ir.factura.venta</from-outcome>
+            <to-view-id>proformafacturav.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

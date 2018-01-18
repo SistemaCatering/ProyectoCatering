@@ -99,10 +99,10 @@ public class UsuarioBean implements Serializable {
         for (Usuario usuario1 : usuarios) {
             if (usuario1.getEmailUsu().equals(usuario.getEmailUsu()) && usuario1.getContrasenaUsu().equals(usuario.getContrasenaUsu())) {
                 if (usuario1.getTipoUsu().equals("Administrador")) {
-                    usuario = new Usuario();
+
                     return "ir.pagina.admin";
                 } else if (usuario1.getTipoUsu().equals("Comun")) {
-                    usuario = new Usuario();
+
                     return "ir.pagina.comun";
                 }
             }

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            .cabecera{
+                border: #6666ff;
+                background: #3A4F54;
+            }
+            .cabecera1{  
+                border: #6666ff;
+                height: 12px;
+                width:50px;
+                background: #3A4F54;
+            }
+            .botones{
+                background: #3A4F54;
+            }
+        </style>
+    </h:head>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Ingreso de un item de la factura"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h3>Ingrese solo el codigo y la cantidad de productos</h3>
+                <table>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Item</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>                         
+                            <h:inputText class="cabecera1" value="#{facturaDetalleVBean.item.codigoItem}">
+                            </h:inputText>
+                        </td>
+                        <td>                           
+                            <h:inputText class="cabecera" value="#{facturaDetalleVBean.item.descripcionItem}">
+                            </h:inputText>
+                        </td>
+                        <td>                           
+                            <h:inputText class="cabecera" value="#{facturaDetalleVBean.item.valorItem}">
+                            </h:inputText>
+                        </td>
+                        <td>                          
+                            <h:inputText class="cabecera" required="true" value="#{facturaDetalleVBean.detalleFactV.cantidadDfv}">
+                            </h:inputText>
+                        </td>
+                        <td>                           
+                            <h:inputText class="cabecera" value="#{facturaDetalleVBean.precio}">
+                            </h:inputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:commandButton class="botones" value="Llenar" action="#{facturaDetalleVBean.llenarDatos}"/>
+                        </td>
+                        <td colspan="4">
+                            <h:commandButton class="botones" value="Siguiente" action="#{facturaDetalleVBean.regresarDetaFactV()}"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
